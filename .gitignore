@@ -37,3 +37,18 @@ Makefile*
 # QtCtreator CMake
 CMakeLists.txt.user*
 
+*.obj
+*.write.1.tlog
+*.tlog
+*.pdb
+*.pch
+*.log
+*.VC.db
+*.VC.VC.opendb
+*.ipch
+*.props
+*.exe
+*.h.cpp
+*.h.cbt
+*.ilk
+*.suo

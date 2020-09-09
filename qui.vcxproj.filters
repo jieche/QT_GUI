@@ -1,0 +1,1208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="demo\appinit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="form\frmdevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="form\highlighter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="demo\navlistview.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="form\panelwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="form\quicreator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="form\quiwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="demo\sliderbar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="demo\uidemo1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="demo\uidemo2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="demo\uidemo3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="demo\uidemo4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="demo\uidemo5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="demo\uidemo6.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="demo\uidemo7.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="demo\uidemo8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="demo\appinit.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="form\frmdevice.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <CustomBuild Include="head.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <QtMoc Include="form\highlighter.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="demo\navlistview.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="form\panelwidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="form\quicreator.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="form\quiwidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="demo\sliderbar.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="demo\uidemo1.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="demo\uidemo2.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="demo\uidemo3.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="demo\uidemo4.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="demo\uidemo5.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="demo\uidemo6.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="demo\uidemo7.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="demo\uidemo8.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="head.h.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    
+    
+    
+    
+    
+    <CustomBuild Include="temp\moc\moc_predefs.h.cbt">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="form\frmdevice.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="form\quicreator.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="demo\uidemo1.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="demo\uidemo2.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="demo\uidemo3.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="demo\uidemo4.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="demo\uidemo5.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="demo\uidemo6.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="demo\uidemo7.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="demo\uidemo8.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="other\qss\bf\add_bottom.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\add_bottom.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\add_bottom.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\add_bottom.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\add_bottom.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\add_bottom.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\add_bottom.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\add_bottom.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\add_bottom.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\add_bottom.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\add_bottom.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\add_bottom.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\add_bottom.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\add_bottom.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\add_bottom.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf\add_left.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\add_left.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\add_left.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\add_left.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\add_left.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\add_left.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\add_left.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\add_left.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\add_left.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\add_left.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\add_left.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\add_left.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\add_left.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\add_left.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\add_left.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf\add_right.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\add_right.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\add_right.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\add_right.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\add_right.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\add_right.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\add_right.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\add_right.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\add_right.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\add_right.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\add_right.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\add_right.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\add_right.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\add_right.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\add_right.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf\add_top.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\add_top.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\add_top.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\add_top.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\add_top.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\add_top.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\add_top.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\add_top.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\add_top.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\add_top.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\add_top.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\add_top.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\add_top.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\add_top.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\add_top.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\bj.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf\branch_close.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\branch_close.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\branch_close.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\branch_close.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\branch_close.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\branch_close.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\branch_close.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\branch_close.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\branch_close.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\branch_close.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\branch_close.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\branch_close.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\branch_close.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\branch_close.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\branch_close.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf\branch_open.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\branch_open.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\branch_open.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\branch_open.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\branch_open.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\branch_open.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\branch_open.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\branch_open.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\branch_open.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\branch_open.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\branch_open.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\branch_open.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\branch_open.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\branch_open.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\branch_open.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\image\btn_close.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\image\btn_ok.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf\calendar_nextmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\calendar_nextmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\calendar_nextmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\calendar_nextmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\calendar_nextmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\calendar_nextmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\calendar_nextmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\calendar_nextmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\calendar_nextmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\calendar_nextmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\calendar_nextmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\calendar_nextmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\calendar_nextmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\calendar_nextmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\calendar_nextmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf\calendar_prevmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\calendar_prevmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\calendar_prevmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\calendar_prevmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\calendar_prevmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\calendar_prevmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\calendar_prevmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\calendar_prevmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\calendar_prevmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\calendar_prevmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\calendar_prevmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\calendar_prevmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\calendar_prevmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\calendar_prevmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\calendar_prevmonth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf\checkbox_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\checkbox_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\checkbox_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\checkbox_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\checkbox_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\checkbox_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\checkbox_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\checkbox_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\checkbox_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\checkbox_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\checkbox_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\checkbox_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\checkbox_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\checkbox_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\checkbox_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf\checkbox_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\checkbox_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\checkbox_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\checkbox_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\checkbox_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\checkbox_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\checkbox_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\checkbox_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\checkbox_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\checkbox_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\checkbox_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\checkbox_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\checkbox_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\checkbox_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\checkbox_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf\checkbox_parcial.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\checkbox_parcial.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\checkbox_parcial.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\checkbox_parcial.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\checkbox_parcial.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\checkbox_parcial.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\checkbox_parcial.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\checkbox_parcial.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\checkbox_parcial.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\checkbox_parcial.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\checkbox_parcial.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\checkbox_parcial.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\checkbox_parcial.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\checkbox_parcial.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\checkbox_parcial.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf\checkbox_parcial_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\checkbox_parcial_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\checkbox_parcial_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\checkbox_parcial_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\checkbox_parcial_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\checkbox_parcial_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\checkbox_parcial_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\checkbox_parcial_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\checkbox_parcial_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\checkbox_parcial_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\checkbox_parcial_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\checkbox_parcial_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\checkbox_parcial_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\checkbox_parcial_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\checkbox_parcial_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf\checkbox_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\checkbox_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\checkbox_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\checkbox_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\checkbox_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\checkbox_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\checkbox_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\checkbox_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\checkbox_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\checkbox_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\checkbox_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\checkbox_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\checkbox_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\checkbox_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\checkbox_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf\checkbox_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\checkbox_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\checkbox_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\checkbox_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\checkbox_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\checkbox_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\checkbox_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\checkbox_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\checkbox_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\checkbox_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\checkbox_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\checkbox_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\checkbox_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\checkbox_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\checkbox_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <QtRcc Include="demo\demo.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+    <None Include="other\qss\flatblack.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\image\fontawesome-webfont.ttf">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\gametest.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\gametest_focus.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <QtRcc Include="demo\image.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+    <None Include="demo\image\infoextend.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\infoextend_focus.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\logo.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\main.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <QtRcc Include="other\main.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+    <None Include="demo\demo\main_about.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\demo\main_company.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\demo\main_config.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\demo\main_data.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\demo\main_exit.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\demo\main_help.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\demo\main_main.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\demo\main_person.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\image\msg_error.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\image\msg_info.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\image\msg_question.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\positiontest.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\positiontest_focus.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <QtRcc Include="other\qss.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+    <None Include="other\image\qt_zh_CN.qm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf\radiobutton_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\radiobutton_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\radiobutton_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\radiobutton_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\radiobutton_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\radiobutton_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\radiobutton_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\radiobutton_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\radiobutton_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\radiobutton_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\radiobutton_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\radiobutton_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\radiobutton_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\radiobutton_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\radiobutton_checked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf\radiobutton_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\radiobutton_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\radiobutton_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\radiobutton_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\radiobutton_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\radiobutton_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\radiobutton_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\radiobutton_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\radiobutton_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\radiobutton_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\radiobutton_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\radiobutton_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\radiobutton_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\radiobutton_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\radiobutton_checked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf\radiobutton_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\radiobutton_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\radiobutton_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\radiobutton_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\radiobutton_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\radiobutton_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\radiobutton_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\radiobutton_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\radiobutton_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\radiobutton_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\radiobutton_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\radiobutton_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\radiobutton_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\radiobutton_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\radiobutton_unchecked.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\bf\radiobutton_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\black\radiobutton_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\blue\radiobutton_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblack\radiobutton_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkblue\radiobutton_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\darkgray\radiobutton_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatblack\radiobutton_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\flatwhite\radiobutton_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\gray\radiobutton_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblack\radiobutton_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightblue\radiobutton_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\lightgray\radiobutton_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\psblack\radiobutton_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery\radiobutton_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test\radiobutton_unchecked_disable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\silvery.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\speedtest.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\speedtest_focus.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\qss\test.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\titleclose.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\titlemax.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\titlemenu.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\titlemini.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\troublecheck.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\troublecheck_focus.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\websitetest.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\websitetest_focus.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="other\image\widgets.qm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\wifitest.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="demo\image\wifitest_focus.png">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="other\main.rc" />
+  </ItemGroup>
+</Project>
