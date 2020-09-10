@@ -32,6 +32,89 @@
    <property name="spacing">
     <number>0</number>
    </property>
+   <item row="1" column="0">
+    <widget class="QWidget" name="widgetLeft" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>100</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <layout class="QVBoxLayout" name="layout_left">
+        <item>
+         <widget class="QPushButton" name="btn1">
+          <property name="text">
+           <string>设备监控</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn2">
+          <property name="text">
+           <string>地图监控</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn3">
+          <property name="text">
+           <string>视频监控</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QWidget" name="widget_main" native="true">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTreeWidget" name="treeWidget">
+        <column>
+         <property name="text">
+          <string notr="true">1</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
    <item row="0" column="0" colspan="2">
     <widget class="QWidget" name="widgetTitle" native="true">
      <property name="sizePolicy">
@@ -80,6 +163,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>正则：</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QWidget" name="widgetTop" native="true">
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <property name="spacing">
@@ -98,44 +188,7 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QToolButton" name="btnMain">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>主界面</string>
-           </property>
-           <property name="icon">
-            <iconset resource="demo.qrc">
-             <normaloff>:/demo/main_main.png</normaloff>:/demo/main_main.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextUnderIcon</enum>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="btnConfig">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>系统设置</string>
-           </property>
-           <property name="icon">
-            <iconset resource="demo.qrc">
-             <normaloff>:/demo/main_config.png</normaloff>:/demo/main_config.png</iconset>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextUnderIcon</enum>
-           </property>
-          </widget>
+          <widget class="QLineEdit" name="lineEdit"/>
          </item>
          <item>
           <widget class="QToolButton" name="btnData">
@@ -146,7 +199,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>警情查询</string>
+            <string>正则筛查</string>
            </property>
            <property name="icon">
             <iconset resource="demo.qrc">
@@ -154,29 +207,6 @@
            </property>
            <property name="checked">
             <bool>false</bool>
-           </property>
-           <property name="toolButtonStyle">
-            <enum>Qt::ToolButtonTextUnderIcon</enum>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="btnHelp">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
-           <property name="text">
-            <string>调试帮助</string>
-           </property>
-           <property name="icon">
-            <iconset resource="demo.qrc">
-             <normaloff>:/demo/main_help.png</normaloff>:/demo/main_help.png</iconset>
            </property>
            <property name="toolButtonStyle">
             <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -195,7 +225,7 @@
             <string notr="true"/>
            </property>
            <property name="text">
-            <string>用户退出</string>
+            <string>数据迁徙</string>
            </property>
            <property name="icon">
             <iconset resource="demo.qrc">
@@ -332,89 +362,6 @@
           </widget>
          </item>
         </layout>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QWidget" name="widgetLeft" native="true">
-     <property name="minimumSize">
-      <size>
-       <width>100</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>100</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QPushButton" name="btn1">
-        <property name="text">
-         <string>设备监控</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btn2">
-        <property name="text">
-         <string>地图监控</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btn3">
-        <property name="text">
-         <string>视频监控</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="verticalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>456</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QWidget" name="widget_main" native="true">
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
        </widget>
       </item>
      </layout>

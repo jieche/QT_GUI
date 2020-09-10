@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 #ifdef demo
     qui.setTitle("QUI皮肤生成器 演示版 (作者: 飞扬青云  QQ: 517216493)");
 #else
-    qui.setTitle("QUI皮肤生成器 (作者: 飞扬青云  QQ: 517216493)");
+    qui.setTitle("文件迁移台");
 #endif
 
     //设置标题文本居中

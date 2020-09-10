@@ -14,7 +14,10 @@ class UIDemo2 : public QDialog
 public:
     explicit UIDemo2(QWidget *parent = 0);
     ~UIDemo2();
-
+	//获取盘符
+	void getDrivers();
+	void traverseDir(QString dirPath) const;
+	QFileInfoList allfile(QTreeWidgetItem *root, QString path); //参数为主函数中添加的item和路径名;
 private:
     Ui::UIDemo2 *ui;
     bool max;
@@ -22,10 +25,10 @@ private:
 
 private slots:
     void initForm();
-    void buttonClick();
+	void buttonClick();
     void btnClick();
 
-private slots:
+		private slots:
     void on_btnMenu_Min_clicked();
     void on_btnMenu_Max_clicked();
     void on_btnMenu_Close_clicked();
