@@ -2,6 +2,7 @@
 #define UIDEMO2_H
 
 #include <QDialog>
+#include "QFileInfo"
 
 namespace Ui {
 class UIDemo2;
@@ -17,11 +18,17 @@ public:
 	//获取盘符
 	void getDrivers();
 	void traverseDir(QString dirPath) const;
+    static bool isMatch(QString str, const QString& pattern);
+	void traverseRecusionDir(QString dirPath, QString pattern);
 	QFileInfoList allfile(QTreeWidgetItem *root, QString path); //参数为主函数中添加的item和路径名;
 private:
     Ui::UIDemo2 *ui;
     bool max;
     QRect location;
+    /**
+	 * \brief 产品文件夹信息列表
+	 */
+	QFileInfoList    m_fileInfoList;
 
 private slots:
     void initForm();

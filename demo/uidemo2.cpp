@@ -1,6 +1,7 @@
 ﻿#include "uidemo2.h"
 #include "ui_uidemo2.h"
 #include "quiwidget.h"
+#include "QRegularExpression"
 
 UIDemo2::UIDemo2(QWidget *parent) :
     QDialog(parent),
@@ -99,6 +100,39 @@ void UIDemo2::traverseDir(QString dirPath) const
 
 }
 
+bool UIDemo2::isMatch(const QString str, const QString& pattern)
+{
+	const QRegularExpression regularExpression(pattern);
+	const QRegularExpressionMatch match = regularExpression.match(str);
+	if (match.hasMatch()) 
+	{
+		return true;
+	}
+	return false;
+}
+
+void UIDemo2::traverseRecusionDir(QString dirPath,QString pattern)
+{
+	QDir dir(dirPath);
+	QFileInfoList folder_list = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);   //获取当前所有目录
+
+	for (int i = 0; i != folder_list.size(); ++i)         //自动递归添加各目录到上一级目录
+	{
+
+		QString namepath = folder_list.at(i).absoluteFilePath();    //获取路径
+		QFileInfo folderinfo = folder_list.at(i);
+		QString name = folderinfo.fileName();      //获取目录名
+		if(isMatch(name,pattern))
+		{
+			m_fileInfoList.push_back(folder_list.at(i));
+		}
+		else
+		{
+			traverseRecusionDir(namepath,pattern);  //进行递归
+		}
+	}
+}
+
 void UIDemo2::buttonClick()
 {
     QToolButton *b = (QToolButton *)sender();
@@ -119,7 +153,7 @@ void UIDemo2::btnClick()
 {
     QPushButton *b = (QPushButton *)sender();
     QString name = b->text();
-	name += QString("晶璃/");
+	//name += QString("晶璃/");
 
     QList<QPushButton *> btns = ui->widgetLeft->findChildren<QPushButton *>();
     foreach (QPushButton *btn, btns) {
@@ -130,9 +164,15 @@ void UIDemo2::btnClick()
         }
     }
 	//traverseDir(name);
-	QTreeWidgetItem *root = new QTreeWidgetItem(ui->treeWidget);
-	root->setText(0, name);
-	allfile(root, name);
+	traverseRecusionDir(name, "2");
+	ui->treeWidget->clear();
+    for (const auto& dir : m_fileInfoList)
+    {
+		QTreeWidgetItem *root = new QTreeWidgetItem(ui->treeWidget);
+		root->setText(0, dir.fileName());
+		allfile(root, dir.absoluteFilePath());
+    }
+	//allfile(root, name);
     ui->label->setText(QString("你单击了左侧导航菜单\n%1").arg(name));
 }
 
