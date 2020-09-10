@@ -98,6 +98,12 @@
     <ClCompile Include="demo\uidemo8.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Worker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="demo\appinit.h">
@@ -151,44 +157,20 @@
     <QtMoc Include="demo\uidemo8.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="Controller.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Worker.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="head.h.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    
-    
-    
-    
-    
     <CustomBuild Include="temp\moc\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="form\frmdevice.ui">

@@ -14,7 +14,9 @@
     <ProjectGuid>{06F802BD-AD35-3938-B7F7-E816581B94E6}</ProjectGuid>
     <RootNamespace>qui</RootNamespace>
     <Keyword>QtVS_v303</Keyword>
-  <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion><QtMsBuild Condition="'$(QtMsBuild)'=='' or !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild></PropertyGroup>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' or !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <PlatformToolset>v140</PlatformToolset>
@@ -34,7 +36,10 @@
     <IntermediateDirectory>temp\obj\</IntermediateDirectory>
     <PrimaryOutput>qui</PrimaryOutput>
   </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" /><Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')"><Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." /></Target>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
   <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
@@ -42,8 +47,34 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
   </ImportGroup>
-  <PropertyGroup Label="UserMacros" /><ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')"><Import Project="$(QtMsBuild)\qt_defaults.props" /></ImportGroup><PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"><OutDir>bin\</OutDir><IntDir>temp\obj\</IntDir><TargetName>qui</TargetName><IgnoreImportLibrary>true</IgnoreImportLibrary></PropertyGroup><PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'"><OutDir>bin\</OutDir><IntDir>temp\obj\</IntDir><TargetName>qui</TargetName><IgnoreImportLibrary>true</IgnoreImportLibrary><LinkIncremental>false</LinkIncremental></PropertyGroup><PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"><QtInstall>msvc2015_64</QtInstall><QtModules>core;network;gui;widgets</QtModules></PropertyGroup><PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'"><QtInstall>msvc2015_64</QtInstall><QtModules>core;network;gui;widgets</QtModules></PropertyGroup><ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')"><Import Project="$(QtMsBuild)\qt.props" /></ImportGroup>
-  
+  <PropertyGroup Label="UserMacros" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>bin\</OutDir>
+    <IntDir>temp\obj\</IntDir>
+    <TargetName>qui</TargetName>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>bin\</OutDir>
+    <IntDir>temp\obj\</IntDir>
+    <TargetName>qui</TargetName>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <QtInstall>msvc2015_64</QtInstall>
+    <QtModules>core;network;gui;widgets</QtModules>
+  </PropertyGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <QtInstall>msvc2015_64</QtInstall>
+    <QtModules>core;network;gui;widgets</QtModules>
+  </PropertyGroup>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
+    <Import Project="$(QtMsBuild)\qt.props" />
+  </ImportGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;form;demo;temp\moc;temp\ui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -60,12 +91,14 @@
       <PrecompiledHeaderOutputFile>$(IntDir)\qui.pch</PrecompiledHeaderOutputFile>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;WIN64;demo1;QT_NO_DEBUG;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
-      <ProgramDataBaseFileName></ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>
+      </ProgramDataBaseFileName>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
-    <MultiProcessorCompilation>true</MultiProcessorCompilation></ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
     <Link>
       <AdditionalDependencies>shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\utils\my_sql\my_sql\lib;C:\utils\postgresql\pgsql\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -87,7 +120,26 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;WIN64;demo1;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_NETWORK_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
-  <QtMoc><CompilerFlavor>msvc</CompilerFlavor><Include>temp/moc/moc_predefs.h</Include><ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription><DynamicSource>output</DynamicSource><QtMocDir>temp\moc</QtMocDir><QtMocFileName>moc_%(Filename).cpp</QtMocFileName></QtMoc><QtRcc><Compression>default</Compression><ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription><QtRccDir>temp\rcc</QtRccDir><QtRccFileName>qrc_%(Filename).cpp</QtRccFileName></QtRcc><QtUic><ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription><QtUicDir>temp\ui</QtUicDir><QtUicFileName>ui_%(Filename).h</QtUicFileName></QtUic></ItemDefinitionGroup>
+    <QtMoc>
+      <CompilerFlavor>msvc</CompilerFlavor>
+      <Include>temp/moc/moc_predefs.h</Include>
+      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
+      <DynamicSource>output</DynamicSource>
+      <QtMocDir>temp\moc</QtMocDir>
+      <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
+    </QtMoc>
+    <QtRcc>
+      <Compression>default</Compression>
+      <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
+      <QtRccDir>temp\rcc</QtRccDir>
+      <QtRccFileName>qrc_%(Filename).cpp</QtRccFileName>
+    </QtRcc>
+    <QtUic>
+      <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
+      <QtUicDir>temp\ui</QtUicDir>
+      <QtUicFileName>ui_%(Filename).h</QtUicFileName>
+    </QtUic>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;form;demo;temp\moc;temp\ui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -108,7 +160,8 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
-    <MultiProcessorCompilation>true</MultiProcessorCompilation></ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
     <Link>
       <AdditionalDependencies>shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\utils\my_sql\my_sql\lib;C:\utils\postgresql\pgsql\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -129,8 +182,28 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;WIN64;demo1;QT_WIDGETS_LIB;QT_GUI_LIB;QT_NETWORK_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
-  <QtMoc><CompilerFlavor>msvc</CompilerFlavor><Include>temp/moc/moc_predefs.h</Include><ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription><DynamicSource>output</DynamicSource><QtMocDir>temp\moc</QtMocDir><QtMocFileName>moc_%(Filename).cpp</QtMocFileName></QtMoc><QtUic><ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription><QtUicDir>temp\ui</QtUicDir><QtUicFileName>ui_%(Filename).h</QtUicFileName></QtUic><QtRcc><Compression>default</Compression><ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription><QtRccDir>temp\rcc</QtRccDir><QtRccFileName>qrc_%(Filename).cpp</QtRccFileName></QtRcc></ItemDefinitionGroup>
+    <QtMoc>
+      <CompilerFlavor>msvc</CompilerFlavor>
+      <Include>temp/moc/moc_predefs.h</Include>
+      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
+      <DynamicSource>output</DynamicSource>
+      <QtMocDir>temp\moc</QtMocDir>
+      <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
+    </QtMoc>
+    <QtUic>
+      <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
+      <QtUicDir>temp\ui</QtUicDir>
+      <QtUicFileName>ui_%(Filename).h</QtUicFileName>
+    </QtUic>
+    <QtRcc>
+      <Compression>default</Compression>
+      <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
+      <QtRccDir>temp\rcc</QtRccDir>
+      <QtRccFileName>qrc_%(Filename).cpp</QtRccFileName>
+    </QtRcc>
+  </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="demo\appinit.cpp" />
     <ClCompile Include="form\frmdevice.cpp" />
     <ClCompile Include="form\highlighter.cpp" />
@@ -148,27 +221,12 @@
     <ClCompile Include="demo\uidemo6.cpp" />
     <ClCompile Include="demo\uidemo7.cpp" />
     <ClCompile Include="demo\uidemo8.cpp" />
+    <ClCompile Include="Worker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="demo\appinit.h">
-      
-      
-      
-      
-      
-      
-      
-      
     </QtMoc>
     <QtMoc Include="form\frmdevice.h">
-      
-      
-      
-      
-      
-      
-      
-      
     </QtMoc>
     <CustomBuild Include="head.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">echo /*-------------------------------------------------------------------- &gt;head.h.cpp
@@ -239,144 +297,32 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">head.h.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <QtMoc Include="form\highlighter.h">
-      
-      
-      
-      
-      
-      
-      
-      
     </QtMoc>
     <QtMoc Include="demo\navlistview.h">
-      
-      
-      
-      
-      
-      
-      
-      
     </QtMoc>
     <QtMoc Include="form\panelwidget.h">
-      
-      
-      
-      
-      
-      
-      
-      
     </QtMoc>
     <QtMoc Include="form\quicreator.h">
-      
-      
-      
-      
-      
-      
-      
-      
     </QtMoc>
     <QtMoc Include="form\quiwidget.h">
-      
-      
-      
-      
-      
-      
-      
-      
     </QtMoc>
     <QtMoc Include="demo\sliderbar.h">
-      
-      
-      
-      
-      
-      
-      
-      
     </QtMoc>
     <QtMoc Include="demo\uidemo1.h">
-      
-      
-      
-      
-      
-      
-      
-      
     </QtMoc>
     <QtMoc Include="demo\uidemo2.h">
-      
-      
-      
-      
-      
-      
-      
-      
     </QtMoc>
     <QtMoc Include="demo\uidemo3.h">
-      
-      
-      
-      
-      
-      
-      
-      
     </QtMoc>
     <QtMoc Include="demo\uidemo4.h">
-      
-      
-      
-      
-      
-      
-      
-      
     </QtMoc>
     <QtMoc Include="demo\uidemo5.h">
-      
-      
-      
-      
-      
-      
-      
-      
     </QtMoc>
     <QtMoc Include="demo\uidemo6.h">
-      
-      
-      
-      
-      
-      
-      
-      
     </QtMoc>
     <QtMoc Include="demo\uidemo7.h">
-      
-      
-      
-      
-      
-      
-      
-      
     </QtMoc>
     <QtMoc Include="demo\uidemo8.h">
-      
-      
-      
-      
-      
-      
-      
-      
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -388,11 +334,6 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">head.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    
-    
-    
-    
-    
     <CustomBuild Include="temp\moc\moc_predefs.h.cbt">
       <FileType>Document</FileType>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
@@ -404,142 +345,27 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generate moc_predefs.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">temp\moc\moc_predefs.h;%(Outputs)</Outputs>
     </CustomBuild>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="form\frmdevice.ui">
-      
-      
-      
-      
-      
-      
-      
-      
-      
     </QtUic>
     <QtUic Include="form\quicreator.ui">
-      
-      
-      
-      
-      
-      
-      
-      
-      
     </QtUic>
     <QtUic Include="demo\uidemo1.ui">
-      
-      
-      
-      
-      
-      
-      
-      
-      
     </QtUic>
     <QtUic Include="demo\uidemo2.ui">
-      
-      
-      
-      
-      
-      
-      
-      
-      
     </QtUic>
     <QtUic Include="demo\uidemo3.ui">
-      
-      
-      
-      
-      
-      
-      
-      
-      
     </QtUic>
     <QtUic Include="demo\uidemo4.ui">
-      
-      
-      
-      
-      
-      
-      
-      
-      
     </QtUic>
     <QtUic Include="demo\uidemo5.ui">
-      
-      
-      
-      
-      
-      
-      
-      
-      
     </QtUic>
     <QtUic Include="demo\uidemo6.ui">
-      
-      
-      
-      
-      
-      
-      
-      
-      
     </QtUic>
     <QtUic Include="demo\uidemo7.ui">
-      
-      
-      
-      
-      
-      
-      
-      
-      
     </QtUic>
     <QtUic Include="demo\uidemo8.ui">
-      
-      
-      
-      
-      
-      
-      
-      
-      
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -763,16 +589,9 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
     <None Include="other\qss\darkblue.css" />
     <None Include="other\qss\darkgray.css" />
     <QtRcc Include="demo\demo.qrc">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-    <InitFuncName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">demo</InitFuncName><InitFuncName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">demo</InitFuncName></QtRcc>
+      <InitFuncName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">demo</InitFuncName>
+      <InitFuncName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">demo</InitFuncName>
+    </QtRcc>
     <None Include="other\qss\flatblack.css" />
     <None Include="other\qss\flatwhite.css" />
     <None Include="other\image\fontawesome-webfont.ttf" />
@@ -780,16 +599,9 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
     <None Include="demo\image\gametest_focus.png" />
     <None Include="other\qss\gray.css" />
     <QtRcc Include="demo\image.qrc">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-    <InitFuncName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">image</InitFuncName><InitFuncName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">image</InitFuncName></QtRcc>
+      <InitFuncName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">image</InitFuncName>
+      <InitFuncName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">image</InitFuncName>
+    </QtRcc>
     <None Include="demo\image\infoextend.png" />
     <None Include="demo\image\infoextend_focus.png" />
     <None Include="other\qss\lightblack.css" />
@@ -798,16 +610,9 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
     <None Include="demo\image\logo.png" />
     <None Include="other\main.ico" />
     <QtRcc Include="other\main.qrc">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-    <InitFuncName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">main</InitFuncName><InitFuncName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">main</InitFuncName></QtRcc>
+      <InitFuncName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">main</InitFuncName>
+      <InitFuncName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">main</InitFuncName>
+    </QtRcc>
     <None Include="demo\demo\main_about.png" />
     <None Include="demo\demo\main_company.png" />
     <None Include="demo\demo\main_config.png" />
@@ -823,16 +628,9 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
     <None Include="demo\image\positiontest_focus.png" />
     <None Include="other\qss\psblack.css" />
     <QtRcc Include="other\qss.qrc">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-    <InitFuncName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">qss</InitFuncName><InitFuncName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">qss</InitFuncName></QtRcc>
+      <InitFuncName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">qss</InitFuncName>
+      <InitFuncName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">qss</InitFuncName>
+    </QtRcc>
     <None Include="other\image\qt_zh_CN.qm" />
     <None Include="other\qss\bf\radiobutton_checked.png" />
     <None Include="other\qss\black\radiobutton_checked.png" />
@@ -913,6 +711,15 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
   <ItemGroup>
     <ResourceCompile Include="other\main.rc" />
   </ItemGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" /><ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')"><Import Project="$(QtMsBuild)\qt.targets" /></ImportGroup>
+  <ItemGroup>
+    <QtMoc Include="Worker.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Controller.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
   <ImportGroup Label="ExtensionTargets" />
 </Project>

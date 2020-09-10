@@ -1,6 +1,8 @@
 ﻿#include "uidemo2.h"
+
 #include "ui_uidemo2.h"
 #include "quiwidget.h"
+#include "Controller.h"
 #include "QRegularExpression"
 
 UIDemo2::UIDemo2(QWidget *parent) :
@@ -9,25 +11,35 @@ UIDemo2::UIDemo2(QWidget *parent) :
 {
     ui->setupUi(this);
     this->initForm();
+	m_thread.start();
     QUIWidget::setFormInCenter(this);
+	connect(&m_thread, &QThread::finished, m_Worker, &QObject::deleteLater);
+	//connect(m_Worker, &Worker::resultReady, this, &Controller::handleResults);
+
 }
 
 UIDemo2::~UIDemo2()
 {
+	m_thread.quit();
+	m_thread.wait();
     delete ui;
 }
 
 void UIDemo2::getDrivers()
 {
-	QFileInfoList list = QDir::drives(); //获取当前系统的盘符
-	foreach(const auto& driver, list)
-	{
-		QString path = driver.absolutePath();
-		
-		auto btn = new QPushButton(ui->widgetLeft);
-		btn->setText(path);
-		ui->layout_left->addWidget(btn,0);
+	foreach(const QStorageInfo &storage, QStorageInfo::mountedVolumes()) {
+		if (storage.isValid() && storage.isReady()) {
+			if (!storage.isReadOnly()) 
+			{
+				QString path = storage.rootPath();
+				auto btn = new QPushButton(ui->widgetLeft);
+				btn->setText(storage.displayName() + "(" + path + ")");
+				btn->setToolTip(storage.displayName() + "(" + path + ")");
+				ui->layout_left->addWidget(btn, 0);
+			}
+		}
 	}
+	
 	auto verticalSpacer_2 = new QSpacerItem(20, 456, QSizePolicy::Minimum, QSizePolicy::Expanding);
 	ui->layout_left->addItem(verticalSpacer_2);
 	
@@ -80,25 +92,6 @@ void UIDemo2::initForm()
     ui->btn1->click();
 }
 
-void UIDemo2::traverseDir(QString dirPath) const
-{
-	ui->treeWidget->clear();
-	QDir dir(dirPath);
-	dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
-	dir.setSorting(QDir::Time);
-
-	QFileInfoList list = dir.entryInfoList();
-	for (int i = 0; i < list.size(); ++i) {
-		QFileInfo fileInfo = list.at(i);
-		QTreeWidgetItem *newItem = new QTreeWidgetItem();
-		newItem->setText(0, fileInfo.fileName());
-		newItem->setText(1, fileInfo.created().toString("yyyy-MM-dd hh:mm:ss"));
-		newItem->setText(2, QString::number(fileInfo.size()));
-		newItem->setText(3, fileInfo.absoluteFilePath());
-		ui->treeWidget->addTopLevelItem(newItem);
-	}
-
-}
 
 bool UIDemo2::isMatch(const QString str, const QString& pattern)
 {
@@ -132,50 +125,6 @@ void UIDemo2::traverseRecusionDir(QString dirPath,QString pattern)
 		}
 	}
 }
-
-void UIDemo2::buttonClick()
-{
-    QToolButton *b = (QToolButton *)sender();
-    QString name = b->text();
-
-    QList<QToolButton *> btns = ui->widgetTop->findChildren<QToolButton *>();
-    foreach (QToolButton *btn, btns) {
-        if (btn == b) {
-            btn->setChecked(true);
-        } else {
-            btn->setChecked(false);
-        }
-    }
-    ui->label->setText(QString("你单击了顶部导航菜单\n%1").arg(name));
-}
-
-void UIDemo2::btnClick()
-{
-    QPushButton *b = (QPushButton *)sender();
-    QString name = b->text();
-	//name += QString("晶璃/");
-
-    QList<QPushButton *> btns = ui->widgetLeft->findChildren<QPushButton *>();
-    foreach (QPushButton *btn, btns) {
-        if (btn == b) {
-            btn->setChecked(true);
-        } else {
-            btn->setChecked(false);
-        }
-    }
-	//traverseDir(name);
-	traverseRecusionDir(name, "2");
-	ui->treeWidget->clear();
-    for (const auto& dir : m_fileInfoList)
-    {
-		QTreeWidgetItem *root = new QTreeWidgetItem(ui->treeWidget);
-		root->setText(0, dir.fileName());
-		allfile(root, dir.absoluteFilePath());
-    }
-	//allfile(root, name);
-    ui->label->setText(QString("你单击了左侧导航菜单\n%1").arg(name));
-}
-
 
 QFileInfoList UIDemo2::allfile(QTreeWidgetItem *root, QString path)         //参数为主函数中添加的item和路径名
 {
@@ -216,6 +165,45 @@ QFileInfoList UIDemo2::allfile(QTreeWidgetItem *root, QString path)         //�
 	return file_list;
 }
 
+void UIDemo2::buttonClick()
+{
+    QToolButton *b = (QToolButton *)sender();
+    QString name = b->text();
+
+    QList<QToolButton *> btns = ui->widgetTop->findChildren<QToolButton *>();
+    foreach (QToolButton *btn, btns) {
+        if (btn == b) {
+            btn->setChecked(true);
+        } else {
+            btn->setChecked(false);
+        }
+    }
+    ui->label->setText(QString("你单击了顶部导航菜单\n%1").arg(name));
+}
+
+void UIDemo2::btnClick()
+{
+    QPushButton *b = (QPushButton *)sender();
+    QString name = b->text();
+	//name += QString("晶璃/");
+
+    QList<QPushButton *> btns = ui->widgetLeft->findChildren<QPushButton *>();
+    foreach (QPushButton *btn, btns) {
+        if (btn == b) {
+            btn->setChecked(true);
+        } else {
+            btn->setChecked(false);
+        }
+    }
+	ui->treeWidget->clear();
+	m_Worker->setPath("D:/");
+	m_Worker->setPattern("李光耀");
+	m_Worker->setTree(ui->treeWidget);
+	m_Worker->moveToThread(&m_thread);
+	connect(this, &UIDemo2::process, m_Worker, &Worker::doWork);
+	emit process("");
+    ui->label->setText(QString("你单击了左侧导航菜单\n%1").arg(name));
+}
 
 void UIDemo2::on_btnMenu_Min_clicked()
 {
