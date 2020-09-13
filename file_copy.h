@@ -23,6 +23,7 @@ public:
 signals:
 	void sigCopyDirStation(float num);
 	void sigCopyDirOver();
+	void sigLog(QString content);
 public slots :
 	void doWork();
 private:

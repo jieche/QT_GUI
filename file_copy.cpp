@@ -4,6 +4,8 @@
 #include <QFileInfo>
 #include <QDebug>
 
+#include "savelog.h"
+
 
 SFileCopy::SFileCopy(QObject *parent) : QObject(parent)
 {
@@ -48,7 +50,9 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 {
 	QDir sourceDir(fromDir);
 	QDir targetDir(toDir);
-	qDebug() << "copyDirectoryFiles:" << fromDir << toDir;
+	 QString log= "拷贝目录:" + fromDir + toDir + "\n";
+	 qDebug() << log;
+	 emit sigLog(log);
 	if (!targetDir.exists()) {    /**< 如果目标目录不存在，则进行创建 */
 		if (!targetDir.mkdir(targetDir.absolutePath())) {
 			return false;
@@ -89,7 +93,8 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 		if (fileInfo.fileName() == "." || fileInfo.fileName() == "..") {
 			continue;
 		}
-		if (fileInfo.isDir()) {    /**< 当为目录时，递归的进行copy */
+		if (fileInfo.isDir())
+		{    /**< 当为目录时，递归的进行copy */
 			if (!copyDirectoryFiles(fileInfo.filePath(), targetDir.filePath(fileInfo.fileName()), coverFileIfExist)) {
 				return false;
 			}
@@ -99,6 +104,10 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 				targetDir.remove(fileInfo.fileName());
 			}
 			/// 进行文件copy
+			QString log = "拷贝文件:" + fileInfo.absoluteFilePath() + "->" + targetDir.absoluteFilePath(fileInfo.fileName()) + "\n";
+			qDebug() << log;
+			emit sigLog(log);
+			//m_textEdit->appendPlainText(log);
 			if (!QFile::copy(fileInfo.filePath(), targetDir.filePath(fileInfo.fileName()))) {
 				return false;
 			}

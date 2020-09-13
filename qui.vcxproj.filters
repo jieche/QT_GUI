@@ -107,6 +107,9 @@
     <ClCompile Include="file_copy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="savelog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="demo\appinit.h">
@@ -167,6 +170,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="file_copy.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="savelog.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

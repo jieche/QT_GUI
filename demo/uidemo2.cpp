@@ -1,9 +1,13 @@
 ﻿#include "uidemo2.h"
+
+#include <codecvt>
+
 #include "ui_uidemo2.h"
 #include "quiwidget.h"
 #include "Controller.h"
 
 #include "QRegularExpression"
+#include "savelog.h"
 #include "QtXml\qdom.h"
 
 UIDemo2::UIDemo2(QWidget *parent) :
@@ -12,6 +16,7 @@ UIDemo2::UIDemo2(QWidget *parent) :
 {
     ui->setupUi(this);
 	readXML();
+	SaveLog::Instance()->start();//启动日志钩子
     this->initForm();
 	m_thread.start();
 	m_Worker->moveToThread(&m_thread);
@@ -26,6 +31,7 @@ UIDemo2::UIDemo2(QWidget *parent) :
 	connect(this, &UIDemo2::process, m_Worker, &Worker::doWork);
 	connect(m_Worker,&Worker::searchFinish,this,[=](){
 		m_isSearching = false;
+		ui->btn_search->setChecked(false);
 		m_DirList = m_Worker->getFileList();
 	});
 
@@ -33,17 +39,31 @@ UIDemo2::UIDemo2(QWidget *parent) :
 	connect(this, &UIDemo2::processCP, m_FileCP, &SFileCopy::doWork);
 	connect(m_FileCP, &SFileCopy::sigCopyDirOver, this, [=]() {
 		m_isCopying = false;
+		ui->btnCopy->setChecked(false);
 	});
 	connect(m_FileCP, &SFileCopy::sigCopyDirStation, this, [=](float value) {
 		ui->progressBar->setValue(value*100);
 	});
+	/*connect(m_FileCP, &SFileCopy::sigLog, this, [=](QString log) {
+		ui->plainTextEdit->appendPlainText(log);
+	}, Qt::QueuedConnection);*/
+	connect(m_FileCP, &SFileCopy::sigLog, this, &UIDemo2::logSlot, Qt::QueuedConnection);
 }
+
+
+void UIDemo2::logSlot(QString log)
+{
+	ui->plainTextEdit->appendPlainText(log);
+}
+
+
 
 UIDemo2::~UIDemo2()
 {
 	m_thread.quit();
 	m_thread.wait();
     delete ui;
+	SaveLog::Instance()->stop();
 }
 
 void UIDemo2::getDrivers()
@@ -303,8 +323,6 @@ void UIDemo2::searchSlot()
 		emit process();
 		m_isSearching = true;
 	}
-	
-	b->setChecked(false);
 }
 
 void UIDemo2::copySlot()
@@ -318,7 +336,6 @@ void UIDemo2::copySlot()
 		emit processCP();
 		m_isCopying = true;
 	}
-	b->setChecked(false);
 }
 
 

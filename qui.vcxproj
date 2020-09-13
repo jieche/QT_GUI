@@ -70,7 +70,7 @@
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <QtInstall>msvc2015_64</QtInstall>
-    <QtModules>core;network;gui;widgets</QtModules>
+    <QtModules>core;network;gui;widgets;xml</QtModules>
   </PropertyGroup>
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
     <Import Project="$(QtMsBuild)\qt.props" />
@@ -222,6 +222,7 @@
     <ClCompile Include="demo\uidemo6.cpp" />
     <ClCompile Include="demo\uidemo7.cpp" />
     <ClCompile Include="demo\uidemo8.cpp" />
+    <ClCompile Include="savelog.cpp" />
     <ClCompile Include="Worker.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -720,6 +721,9 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="file_copy.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="savelog.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
