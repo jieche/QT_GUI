@@ -109,13 +109,21 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 
 void SFileCopy::doWork()
 {
-
+	//创建 时间戳文件夹
+	QDateTime datetime = QDateTime::currentDateTime();
+	QString timestr = datetime.toString("yyyyMMddHHmmss");  // 文件名称为“年月日时分秒”
+	QDir targetDir(m_desPath+"/"+ timestr);
+	if (!targetDir.exists()) {    /**< 如果目标目录不存在，则进行创建 */
+		if (!targetDir.mkdir(targetDir.absolutePath())) {
+			return ;
+		}
+	}
+	
 	for (const auto& dir : m_srcFileList)
 	{
 		//m_mutex.lock();
 		QString temp = dir.baseName();
-		
-		copyDirectoryFiles(dir.absoluteFilePath(), m_desPath+"/"+ dir.baseName());
+		copyDirectoryFiles(dir.absoluteFilePath(), m_desPath+ "/" + timestr +"/"+ dir.baseName());
 		//m_mutex.unlock();
 	}
 	

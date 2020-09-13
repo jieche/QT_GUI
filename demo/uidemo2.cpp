@@ -34,6 +34,9 @@ UIDemo2::UIDemo2(QWidget *parent) :
 	connect(m_FileCP, &SFileCopy::sigCopyDirOver, this, [=]() {
 		m_isCopying = false;
 	});
+	connect(m_FileCP, &SFileCopy::sigCopyDirStation, this, [=](float value) {
+		ui->progressBar->setValue(value*100);
+	});
 }
 
 UIDemo2::~UIDemo2()
@@ -45,7 +48,23 @@ UIDemo2::~UIDemo2()
 
 void UIDemo2::getDrivers()
 {
-	foreach(const QStorageInfo &storage, QStorageInfo::mountedVolumes()) {
+	foreach(const QStorageInfo &storage, QStorageInfo::mountedVolumes())
+	{
+		//磁盘名称 -》替换盘符
+		QString diskName = m_desPath.split(":").at(0).trimmed();
+		if(diskName == storage.displayName())
+		{
+			m_desDiskFlag = storage.rootPath().split(":").at(0);
+			m_desDiskName = storage.displayName();
+			ui->label_des->setText(QString("目的地址：%1").arg(storage.displayName() + "(" + storage.rootPath() + ")"));
+		    
+			if(m_desPath.left(m_desDiskName.length()) == m_desDiskName)
+			{
+				m_desPath.replace(0, m_desDiskName.length(), m_desDiskFlag);
+			}
+			
+		}
+		
 		if (storage.isValid() && storage.isReady()) {
 			if (!storage.isReadOnly()) 
 			{
@@ -181,11 +200,6 @@ QFileInfoList UIDemo2::allfile(QTreeWidgetItem *root, QString path)         //�
 	return file_list;
 }
 
-void UIDemo2::buttonClick()
-{
-    //ui->label->setText(QString("你单击了顶部导航菜单\n%1").arg(name));
-}
-
 void UIDemo2::btnClick()
 {
     QPushButton *b = (QPushButton *)sender();
@@ -255,7 +269,7 @@ void UIDemo2::readXML()
 			{
 				auto path = e.attribute("path");
 				ui->label_des->setText(QString("目的地址：%1").arg(path));
-				m_desPath = path;
+				m_desPath = path.trimmed();
 				auto pattern = e.attribute("pattern");
 				ui->lineEdit->setText(pattern);
 			}

@@ -41,7 +41,6 @@ private:
 
 private slots:
     void initForm();
-	void buttonClick();
     void btnClick();
 
 private slots:
@@ -57,6 +56,8 @@ signals:
 private:
 	QString m_srcPath;
 	QString m_desPath;
+	QString m_desDiskFlag;
+	QString m_desDiskName;
 	bool m_isSearching = false;
 	bool m_isCopying = false;
 	QFileInfoList  m_DirList;
