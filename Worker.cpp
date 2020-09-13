@@ -85,10 +85,12 @@ QFileInfoList Worker::allfile(QTreeWidgetItem *root, QString path)         //参
 	return QFileInfoList();
 }
 
-void Worker::doWork(const QString &parameter)
+void Worker::doWork()
 {
 	QString result;
+	m_mutex.lock();
 	m_fileInfoList.clear();
+	m_mutex.unlock();
 	/* ... here is the expensive or blocking operation ... */
 	traverseRecusionDir(m_dirPath, m_pattern);
 	for (const auto& dir : m_fileInfoList)
@@ -102,6 +104,7 @@ void Worker::doWork(const QString &parameter)
 	}
 	
 	emit resultReady(result);
+	emit searchFinish();
 }
 
 

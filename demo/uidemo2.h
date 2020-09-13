@@ -6,7 +6,8 @@
 #include <QDomDocument>
 #include <QStringList>
 
-#include "Controller.h"
+
+#include "file_copy.h"
 #include "QFileInfo"
 #include "Worker.h"
 
@@ -35,9 +36,10 @@ private:
 	 * \brief 产品文件夹信息列表
 	 */
 	QFileInfoList    m_fileInfoList;
-	Controller		*controller = nullptr;
 	Worker        *m_Worker =new Worker;
 	QThread       m_thread;
+	SFileCopy     *m_FileCP = new SFileCopy;
+	QThread		  m_cp_thread;
 
 private slots:
     void initForm();
@@ -49,8 +51,16 @@ private slots:
     void on_btnMenu_Max_clicked();
     void on_btnMenu_Close_clicked();
 	void readXML();
+	void searchSlot();
+	void copySlot();
 signals:
-	void process(const QString &);
+	void process();
+	void processCP();
+private:
+	QString m_srcPath;
+	QString m_desPath;
+	bool m_isSearching = false;
+	bool m_isCopying = false;
 };
 
 #endif // UIDEMO2_H

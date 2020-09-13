@@ -205,6 +205,7 @@
   <ItemGroup>
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="demo\appinit.cpp" />
+    <ClCompile Include="file_copy.cpp" />
     <ClCompile Include="form\frmdevice.cpp" />
     <ClCompile Include="form\highlighter.cpp" />
     <ClCompile Include="main.cpp" />
@@ -716,6 +717,9 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Controller.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="file_copy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

@@ -63,29 +63,7 @@
        <number>0</number>
       </property>
       <item>
-       <layout class="QVBoxLayout" name="layout_left">
-        <item>
-         <widget class="QPushButton" name="btn1">
-          <property name="text">
-           <string>设备监控</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btn2">
-          <property name="text">
-           <string>地图监控</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btn3">
-          <property name="text">
-           <string>视频监控</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <layout class="QVBoxLayout" name="layout_left"/>
       </item>
      </layout>
     </widget>
@@ -231,7 +209,7 @@
           <widget class="QLineEdit" name="lineEdit"/>
          </item>
          <item>
-          <widget class="QToolButton" name="btnData">
+          <widget class="QToolButton" name="btn_search">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -277,6 +255,16 @@
           </widget>
          </item>
         </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QProgressBar" name="progressBar">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>18</height>
+         </size>
+        </property>
        </widget>
       </item>
       <item>
@@ -420,8 +408,8 @@
    <slot>copySlot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>797</x>
-     <y>53</y>
+     <x>783</x>
+     <y>54</y>
     </hint>
     <hint type="destinationlabel">
      <x>960</x>
@@ -429,8 +417,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>btn_search</sender>
+   <signal>clicked()</signal>
+   <receiver>UIDemo2</receiver>
+   <slot>searchSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>657</x>
+     <y>38</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>678</x>
+     <y>-52</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>copySlot()</slot>
+  <slot>searchSlot()</slot>
  </slots>
 </ui>

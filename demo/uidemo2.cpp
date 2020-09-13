@@ -11,12 +11,28 @@ UIDemo2::UIDemo2(QWidget *parent) :
     ui(new Ui::UIDemo2)
 {
     ui->setupUi(this);
+	readXML();
     this->initForm();
 	m_thread.start();
+	m_Worker->moveToThread(&m_thread);
+
+	m_cp_thread.start();
+	m_FileCP->moveToThread(&m_cp_thread);
+	
+	
+	
     QUIWidget::setFormInCenter(this);
 	connect(&m_thread, &QThread::finished, m_Worker, &QObject::deleteLater);
-	//connect(m_Worker, &Worker::resultReady, this, &Controller::handleResults);
-	readXML();
+	connect(this, &UIDemo2::process, m_Worker, &Worker::doWork);
+	connect(m_Worker,&Worker::searchFinish,this,[=](){
+		m_isSearching = false;
+	});
+
+	connect(&m_cp_thread, &QThread::finished, m_FileCP, &QObject::deleteLater);
+	connect(this, &UIDemo2::processCP, m_FileCP, &SFileCopy::doWork);
+	connect(m_FileCP, &SFileCopy::sigCopyDirOver, this, [=]() {
+		m_isCopying = false;
+	});
 }
 
 UIDemo2::~UIDemo2()
@@ -77,8 +93,8 @@ void UIDemo2::initForm()
         btn->setIconSize(icoSize);
         btn->setMinimumWidth(icoWidth);
         btn->setCheckable(true);
-        connect(btn, SIGNAL(clicked()), this, SLOT(buttonClick()));
     }
+     //connect(ui->btn_search, SIGNAL(clicked()), this, SLOT(buttonClick()));
 
     //ui->btnMain->click();
 
@@ -89,9 +105,8 @@ void UIDemo2::initForm()
         connect(btn, SIGNAL(clicked()), this, SLOT(btnClick()));
     }
 
-    ui->btn1->click();
+    //ui->btn1->click();
 }
-
 
 bool UIDemo2::isMatch(const QString str, const QString& pattern)
 {
@@ -167,26 +182,16 @@ QFileInfoList UIDemo2::allfile(QTreeWidgetItem *root, QString path)         //�
 
 void UIDemo2::buttonClick()
 {
-    QToolButton *b = (QToolButton *)sender();
-    QString name = b->text();
-
-    QList<QToolButton *> btns = ui->widgetTop->findChildren<QToolButton *>();
-    foreach (QToolButton *btn, btns) {
-        if (btn == b) {
-            btn->setChecked(true);
-        } else {
-            btn->setChecked(false);
-        }
-    }
     //ui->label->setText(QString("你单击了顶部导航菜单\n%1").arg(name));
 }
 
 void UIDemo2::btnClick()
 {
     QPushButton *b = (QPushButton *)sender();
-    QString name = b->text();
-	//name += QString("晶璃/");
-
+    QString path = b->text();
+	path = path.split("(").at(1);
+	path = path.split(")").at(0);
+	m_srcPath = path;
     QList<QPushButton *> btns = ui->widgetLeft->findChildren<QPushButton *>();
     foreach (QPushButton *btn, btns) {
         if (btn == b) {
@@ -195,14 +200,8 @@ void UIDemo2::btnClick()
             btn->setChecked(false);
         }
     }
-	ui->treeWidget->clear();
-	m_Worker->setPath("D:/");
-	m_Worker->setPattern("李光耀");
-	m_Worker->setTree(ui->treeWidget);
-	m_Worker->moveToThread(&m_thread);
-	connect(this, &UIDemo2::process, m_Worker, &Worker::doWork);
-	emit process("");
-    ui->label_src->setText(QString("源地址：%1").arg(name));
+
+    ui->label_src->setText(QString("源地址：%1").arg(b->text()));
 }
 
 void UIDemo2::on_btnMenu_Min_clicked()
@@ -250,15 +249,60 @@ void UIDemo2::readXML()
 	{
 		if (node.isElement()) //如果节点是元素
 		{
-			//cityInfo  city;
 			QDomElement e = node.toElement(); //转换为元素，注意元素和节点是两个数据结构，其实差不多
 			if (e.tagName() == "info")
 			{
 				auto path = e.attribute("path");
 				ui->label_des->setText(QString("目的地址：%1").arg(path));
+				m_desPath = path;
 				auto pattern = e.attribute("pattern");
+				ui->lineEdit->setText(pattern);
 			}
 		}
 		node = node.nextSibling(); //下一个兄弟节点,nextSiblingElement()是下一个兄弟元素，都差不多
 	}
 }
+
+void UIDemo2::searchSlot()
+{
+	QToolButton *b = (QToolButton *)sender();
+	QString name = b->text();
+
+	/*QList<QToolButton *> btns = ui->widgetTop->findChildren<QToolButton *>();
+	foreach(QToolButton *btn, btns) {
+		if (btn == b) {
+			btn->setChecked(true);
+		}
+		else {
+			btn->setChecked(false);
+		}
+	}*/
+	ui->treeWidget->clear();
+	m_Worker->setPath(m_srcPath);
+	m_Worker->setPattern(ui->lineEdit->text());
+	m_Worker->setTree(ui->treeWidget);
+	
+	if(m_isSearching ==false)
+	{
+		emit process();
+		m_isSearching = true;
+	}
+	
+	b->setChecked(false);
+}
+
+void UIDemo2::copySlot()
+{
+	QToolButton *b = (QToolButton *)sender();
+
+	m_FileCP->setSrcPath(m_srcPath);
+	m_FileCP->setDesPath(m_desPath);
+	if (m_isCopying == false)
+	{
+		emit processCP();
+		m_isCopying = true;
+	}
+	b->setChecked(false);
+}
+
+

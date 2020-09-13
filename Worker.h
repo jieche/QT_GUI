@@ -22,9 +22,10 @@ signals:
 	void currentNum(int);
 	void workDone();
 	void resultReady(const QString &result);
+	void searchFinish();
 public slots:
 	//void stopThread();
-	void doWork(const QString &parameter);
+	void doWork();
 
 protected:
 
