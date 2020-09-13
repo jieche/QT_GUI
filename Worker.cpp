@@ -88,6 +88,7 @@ QFileInfoList Worker::allfile(QTreeWidgetItem *root, QString path)         //参
 void Worker::doWork(const QString &parameter)
 {
 	QString result;
+	m_fileInfoList.clear();
 	/* ... here is the expensive or blocking operation ... */
 	traverseRecusionDir(m_dirPath, m_pattern);
 	for (const auto& dir : m_fileInfoList)
@@ -95,8 +96,9 @@ void Worker::doWork(const QString &parameter)
 		m_mutex.lock();
 		QTreeWidgetItem *root = new QTreeWidgetItem(m_treeWidget);
 		root->setText(0, dir.fileName());
+		root->setToolTip(0,dir.absoluteFilePath());
 		m_mutex.unlock();
-		allfile(root, dir.absoluteFilePath());
+		//allfile(root, dir.absoluteFilePath());
 	}
 	
 	emit resultReady(result);

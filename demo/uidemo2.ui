@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>1263</width>
     <height>800</height>
    </rect>
   </property>
@@ -92,25 +92,52 @@
    </item>
    <item row="1" column="1">
     <widget class="QWidget" name="widget_main" native="true">
-     <layout class="QVBoxLayout" name="verticalLayout_2">
+     <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_src">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTreeWidget" name="treeWidget">
+          <column>
+           <property name="text">
+            <string notr="true">产品目录</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
-       <widget class="QTreeWidget" name="treeWidget">
-        <column>
-         <property name="text">
-          <string notr="true">产品目录</string>
-         </property>
-        </column>
-       </widget>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_des">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPlainTextEdit" name="plainTextEdit">
+          <property name="plainText">
+           <string>每个人心中都有一段鲜不为人知的故事，
+如果不是某一天，
+某个不经意的回头一瞥，
+那段往事，
+就只能永远埋在记忆的最深处，
+那是回忆的尽头，
+可就无法避免那一触，
+无论你在上面用怎样淤厚的冷漠层层包裹，
+却总在瞬间崩溃。</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
@@ -227,7 +254,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="btnExit">
+          <widget class="QToolButton" name="btnCopy">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -385,5 +412,25 @@
  <resources>
   <include location="demo.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>btnCopy</sender>
+   <signal>clicked()</signal>
+   <receiver>UIDemo2</receiver>
+   <slot>copySlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>797</x>
+     <y>53</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>960</x>
+     <y>-26</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>copySlot()</slot>
+ </slots>
 </ui>

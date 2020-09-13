@@ -1,9 +1,10 @@
 ﻿#include "uidemo2.h"
-
 #include "ui_uidemo2.h"
 #include "quiwidget.h"
 #include "Controller.h"
+
 #include "QRegularExpression"
+#include "QtXml\qdom.h"
 
 UIDemo2::UIDemo2(QWidget *parent) :
     QDialog(parent),
@@ -15,7 +16,7 @@ UIDemo2::UIDemo2(QWidget *parent) :
     QUIWidget::setFormInCenter(this);
 	connect(&m_thread, &QThread::finished, m_Worker, &QObject::deleteLater);
 	//connect(m_Worker, &Worker::resultReady, this, &Controller::handleResults);
-
+	readXML();
 }
 
 UIDemo2::~UIDemo2()
@@ -45,7 +46,6 @@ void UIDemo2::getDrivers()
 	
 }
 
-
 void UIDemo2::initForm()
 {
     this->max = false;
@@ -66,7 +66,7 @@ void UIDemo2::initForm()
     ui->labTitle->setFont(QFont("Microsoft Yahei", 20));
     this->setWindowTitle(ui->labTitle->text());
 
-    ui->label->setStyleSheet("QLabel{font:30pt;}");
+    //ui->label->setStyleSheet("QLabel{font:30pt;}");
 	getDrivers();
     QSize icoSize(32, 32);
     int icoWidth = 85;
@@ -178,7 +178,7 @@ void UIDemo2::buttonClick()
             btn->setChecked(false);
         }
     }
-    ui->label->setText(QString("你单击了顶部导航菜单\n%1").arg(name));
+    //ui->label->setText(QString("你单击了顶部导航菜单\n%1").arg(name));
 }
 
 void UIDemo2::btnClick()
@@ -202,7 +202,7 @@ void UIDemo2::btnClick()
 	m_Worker->moveToThread(&m_thread);
 	connect(this, &UIDemo2::process, m_Worker, &Worker::doWork);
 	emit process("");
-    ui->label->setText(QString("你单击了左侧导航菜单\n%1").arg(name));
+    ui->label_src->setText(QString("源地址：%1").arg(name));
 }
 
 void UIDemo2::on_btnMenu_Min_clicked()
@@ -227,4 +227,38 @@ void UIDemo2::on_btnMenu_Max_clicked()
 void UIDemo2::on_btnMenu_Close_clicked()
 {
     close();
+}
+
+void UIDemo2::readXML()
+{
+	//打开或创建文件
+	QFile file("config.xml"); //相对路径、绝对路径、资源路径都行
+	if (!file.open(QFile::ReadOnly))
+		return;
+
+	QDomDocument doc;
+	if (!doc.setContent(&file))
+	{
+		file.close();
+		return;
+	}
+	file.close();
+
+	QDomElement root = doc.documentElement(); //返回根节点
+	QDomNode node = root.firstChild(); //获得第一个子节点
+	while (!node.isNull())  //如果节点不空
+	{
+		if (node.isElement()) //如果节点是元素
+		{
+			//cityInfo  city;
+			QDomElement e = node.toElement(); //转换为元素，注意元素和节点是两个数据结构，其实差不多
+			if (e.tagName() == "info")
+			{
+				auto path = e.attribute("path");
+				ui->label_des->setText(QString("目的地址：%1").arg(path));
+				auto pattern = e.attribute("pattern");
+			}
+		}
+		node = node.nextSibling(); //下一个兄弟节点,nextSiblingElement()是下一个兄弟元素，都差不多
+	}
 }

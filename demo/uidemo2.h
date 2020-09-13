@@ -2,6 +2,9 @@
 #define UIDEMO2_H
 
 #include <QDialog>
+#include <QtXml>
+#include <QDomDocument>
+#include <QStringList>
 
 #include "Controller.h"
 #include "QFileInfo"
@@ -45,6 +48,7 @@ private slots:
     void on_btnMenu_Min_clicked();
     void on_btnMenu_Max_clicked();
     void on_btnMenu_Close_clicked();
+	void readXML();
 signals:
 	void process(const QString &);
 };
