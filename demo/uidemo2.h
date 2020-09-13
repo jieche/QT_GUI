@@ -2,8 +2,6 @@
 #define UIDEMO2_H
 
 #include <QDialog>
-#include <QtXml>
-#include <QDomDocument>
 #include <QStringList>
 
 
@@ -61,6 +59,7 @@ private:
 	QString m_desPath;
 	bool m_isSearching = false;
 	bool m_isCopying = false;
+	QFileInfoList  m_DirList;
 };
 
 #endif // UIDEMO2_H

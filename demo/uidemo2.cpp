@@ -26,6 +26,7 @@ UIDemo2::UIDemo2(QWidget *parent) :
 	connect(this, &UIDemo2::process, m_Worker, &Worker::doWork);
 	connect(m_Worker,&Worker::searchFinish,this,[=](){
 		m_isSearching = false;
+		m_DirList = m_Worker->getFileList();
 	});
 
 	connect(&m_cp_thread, &QThread::finished, m_FileCP, &QObject::deleteLater);
@@ -261,6 +262,7 @@ void UIDemo2::readXML()
 		}
 		node = node.nextSibling(); //下一个兄弟节点,nextSiblingElement()是下一个兄弟元素，都差不多
 	}
+	file.close();
 }
 
 void UIDemo2::searchSlot()
@@ -295,7 +297,7 @@ void UIDemo2::copySlot()
 {
 	QToolButton *b = (QToolButton *)sender();
 
-	m_FileCP->setSrcPath(m_srcPath);
+	m_FileCP->setSrcPath(m_DirList);
 	m_FileCP->setDesPath(m_desPath);
 	if (m_isCopying == false)
 	{

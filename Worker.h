@@ -31,7 +31,8 @@ protected:
 
 private:
 	volatile bool bStop = false;//易失性变量,用volatile进行申明
-
+public:
+	QFileInfoList getFileList() const { return m_fileInfoList; }
 	/**
 	* \brief 产品文件夹信息列表
 	*/

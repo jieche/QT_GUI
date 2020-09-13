@@ -109,5 +109,14 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 
 void SFileCopy::doWork()
 {
-	copyDirectoryFiles(m_srcPath, m_desPath);
+
+	for (const auto& dir : m_srcFileList)
+	{
+		//m_mutex.lock();
+		QString temp = dir.baseName();
+		
+		copyDirectoryFiles(dir.absoluteFilePath(), m_desPath+"/"+ dir.baseName());
+		//m_mutex.unlock();
+	}
+	
 }

@@ -17,7 +17,7 @@ public:
 
 	//¿½±´ÎÄ¼þ¼Ð£º
 	bool copyDirectoryFiles(const QString &fromDir, const QString &toDir, bool coverFileIfExist =true);
-	void setSrcPath(QString path) { m_srcPath = path; };
+	void setSrcPath(QFileInfoList path) { m_srcFileList = path; };
 	void setDesPath(QString path) { m_desPath = path; };
 	
 signals:
@@ -30,7 +30,7 @@ private:
 	float m_total = 0;
 	float m_value = 0;
 	bool m_firstRead = true;
-	QString m_srcPath;
+	QFileInfoList m_srcFileList;
 	QString m_desPath;
 };
 
