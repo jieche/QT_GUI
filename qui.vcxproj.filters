@@ -110,6 +110,9 @@
     <ClCompile Include="savelog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mysql.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="demo\appinit.h">
@@ -1198,5 +1201,10 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="other\main.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mysql.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,6 +4,8 @@
 #include <QFileInfo>
 #include <QDebug>
 
+
+#include "MySql.h"
 #include "savelog.h"
 
 
@@ -127,13 +129,31 @@ void SFileCopy::doWork()
 			return ;
 		}
 	}
-	
+	MySql  db;
 	for (const auto& dir : m_srcFileList)
 	{
-		//m_mutex.lock();
-		QString temp = dir.baseName();
+		QString product_type = "0";
+		QString storage_path = dir.absoluteFilePath();
+		QString storage_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
+		QString burn_start_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
+		QString Stor_state = "2";
 		copyDirectoryFiles(dir.absoluteFilePath(), m_desPath+ "/" + timestr +"/"+ dir.baseName());
-		//m_mutex.unlock();
+		QString burn_end_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
+		Stor_state = "1";
+		QString remark = dir.baseName();
+		QString sql = QString("insert into zc_stor_info(product_type,storage_path,storage_time,burn_start_time,burn_end_time,Stor_state,remark) values(%1,'%2',%3,'%4','%5',%6,'%7')")
+			.arg(product_type)//1
+			.arg(storage_path)//2
+			.arg(storage_time)//3
+			.arg(burn_start_time)//4
+			.arg(burn_end_time)//5
+			.arg(Stor_state)//6
+			.arg(remark);//7
+		db.insert(sql);
 	}
 	
+	
+	
+
+	;
 }

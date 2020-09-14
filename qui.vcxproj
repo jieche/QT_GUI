@@ -66,7 +66,7 @@
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <QtInstall>msvc2015_64</QtInstall>
-    <QtModules>core;network;gui;widgets;xml</QtModules>
+    <QtModules>core;network;gui;widgets;xml;sql</QtModules>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <QtInstall>msvc2015_64</QtInstall>
@@ -222,6 +222,7 @@
     <ClCompile Include="demo\uidemo6.cpp" />
     <ClCompile Include="demo\uidemo7.cpp" />
     <ClCompile Include="demo\uidemo8.cpp" />
+    <ClCompile Include="mysql.cpp" />
     <ClCompile Include="savelog.cpp" />
     <ClCompile Include="Worker.cpp" />
   </ItemGroup>
@@ -724,6 +725,9 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="savelog.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mysql.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

@@ -5,6 +5,7 @@
 #include "ui_uidemo2.h"
 #include "quiwidget.h"
 #include "Controller.h"
+#include "mysql.h"
 
 #include "QRegularExpression"
 #include "savelog.h"
@@ -23,8 +24,7 @@ UIDemo2::UIDemo2(QWidget *parent) :
 
 	m_cp_thread.start();
 	m_FileCP->moveToThread(&m_cp_thread);
-	
-	
+
 	
     QUIWidget::setFormInCenter(this);
 	connect(&m_thread, &QThread::finished, m_Worker, &QObject::deleteLater);
