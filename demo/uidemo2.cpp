@@ -49,7 +49,6 @@ UIDemo2::UIDemo2(QWidget *parent) :
 	connect(m_FileCP, &SFileCopy::sigLog, this, &UIDemo2::logSlot, Qt::QueuedConnection);
 }
 
-
 void UIDemo2::logSlot(QString log)
 {
 	ui->plainTextEdit->appendPlainText(log);
@@ -79,7 +78,9 @@ void UIDemo2::getDrivers()
 		{
 			m_desDiskFlag = storage.rootPath().split(":").at(0);
 			m_desDiskName = storage.displayName();
-			ui->label_des->setText(QString("目的地址：%1").arg(storage.displayName() + "(" + storage.rootPath() + ")"));
+			QString  path = ui->label_des->text().split(":").at(1);
+			
+			ui->label_des->setText(QString("目的地址：%1").arg(storage.displayName() + "(" + m_desDiskFlag +":"+path + ")"));
 		    
 			if(m_desPath.left(m_desDiskName.length()) == m_desDiskName)
 			{
