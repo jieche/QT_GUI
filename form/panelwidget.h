@@ -1,13 +1,6 @@
 ﻿#ifndef PANELWIDGET_H
 #define PANELWIDGET_H
 
-/**
- * 面板容器控件 作者:feiyangqingyun(QQ:517216493) 2016-11-20
- * 1:支持所有widget子类对象,自动产生滚动条
- * 2:支持自动拉伸自动填充
- * 3:提供接口获取容器内的所有对象的指针
- */
-
 #include <QWidget>
 
 class QScrollArea;

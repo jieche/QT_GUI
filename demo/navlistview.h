@@ -1,23 +1,6 @@
 ﻿#ifndef NAVLISTVIEW_H
 #define NAVLISTVIEW_H
 
-/**
- * 树状导航栏控件 作者:feiyangqingyun(QQ:517216493) 2016-10-28
- * 本控件来源于网络(原作者:sssooonnnggg(http://www.qtcn.org/bbs/read-htm-tid-58274-ds-1-page-1.html#163557))
- * 1:合并成一个文件
- * 2:隐藏多余接口,只保留readData函数接口
- * 3:修正重复加载数据BUG及关闭时有时候崩溃的BUG
- * 4:修正当范围值中最小值为负数时的bug
- * 5:增加默认支持鼠标悬停
- * 6:增加一些完整性校验
- * 7:增加设置各种颜色
- * 8:+-伸缩图形改成绘制,同时支持+-图形及三角形图形
- * 9:增加setData数据接口,使之同时支持字符串链表作为数据源
- * 10:增加设置分割线条是否可见
- * 11:增加设置伸缩图片采用何种颜色
- * 12:改进分割线条高度
- * 13:将显示未读条数部分改成提示信息,可以是字符串
- */
 
 #include <QStyledItemDelegate>
 #include <QAbstractListModel>

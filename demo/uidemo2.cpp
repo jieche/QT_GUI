@@ -4,7 +4,6 @@
 
 #include "ui_uidemo2.h"
 #include "quiwidget.h"
-#include "Controller.h"
 #include "mysql.h"
 
 #include "QRegularExpression"

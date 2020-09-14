@@ -50,9 +50,6 @@
     <ClCompile Include="demo\appinit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="form\frmdevice.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="form\highlighter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -74,34 +71,10 @@
     <ClCompile Include="demo\sliderbar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="demo\uidemo1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="demo\uidemo2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="demo\uidemo3.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="demo\uidemo4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="demo\uidemo5.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="demo\uidemo6.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="demo\uidemo7.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="demo\uidemo8.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Worker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="file_copy.cpp">
@@ -116,9 +89,6 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="demo\appinit.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="form\frmdevice.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <CustomBuild Include="head.h">
@@ -142,31 +112,7 @@
     <QtMoc Include="demo\sliderbar.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="demo\uidemo1.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="demo\uidemo2.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="demo\uidemo3.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="demo\uidemo4.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="demo\uidemo5.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="demo\uidemo6.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="demo\uidemo7.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="demo\uidemo8.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="Controller.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="Worker.h">
@@ -188,34 +134,10 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="form\frmdevice.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
     <QtUic Include="form\quicreator.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="demo\uidemo1.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
     <QtUic Include="demo\uidemo2.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="demo\uidemo3.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="demo\uidemo4.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="demo\uidemo5.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="demo\uidemo6.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="demo\uidemo7.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="demo\uidemo8.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

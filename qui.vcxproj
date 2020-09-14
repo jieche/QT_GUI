@@ -203,10 +203,8 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="demo\appinit.cpp" />
     <ClCompile Include="file_copy.cpp" />
-    <ClCompile Include="form\frmdevice.cpp" />
     <ClCompile Include="form\highlighter.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="demo\navlistview.cpp" />
@@ -214,22 +212,13 @@
     <ClCompile Include="form\quicreator.cpp" />
     <ClCompile Include="form\quiwidget.cpp" />
     <ClCompile Include="demo\sliderbar.cpp" />
-    <ClCompile Include="demo\uidemo1.cpp" />
     <ClCompile Include="demo\uidemo2.cpp" />
-    <ClCompile Include="demo\uidemo3.cpp" />
-    <ClCompile Include="demo\uidemo4.cpp" />
-    <ClCompile Include="demo\uidemo5.cpp" />
-    <ClCompile Include="demo\uidemo6.cpp" />
-    <ClCompile Include="demo\uidemo7.cpp" />
-    <ClCompile Include="demo\uidemo8.cpp" />
     <ClCompile Include="mysql.cpp" />
     <ClCompile Include="savelog.cpp" />
     <ClCompile Include="Worker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="demo\appinit.h">
-    </QtMoc>
-    <QtMoc Include="form\frmdevice.h">
     </QtMoc>
     <CustomBuild Include="head.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">echo /*-------------------------------------------------------------------- &gt;head.h.cpp
@@ -311,21 +300,7 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
     </QtMoc>
     <QtMoc Include="demo\sliderbar.h">
     </QtMoc>
-    <QtMoc Include="demo\uidemo1.h">
-    </QtMoc>
     <QtMoc Include="demo\uidemo2.h">
-    </QtMoc>
-    <QtMoc Include="demo\uidemo3.h">
-    </QtMoc>
-    <QtMoc Include="demo\uidemo4.h">
-    </QtMoc>
-    <QtMoc Include="demo\uidemo5.h">
-    </QtMoc>
-    <QtMoc Include="demo\uidemo6.h">
-    </QtMoc>
-    <QtMoc Include="demo\uidemo7.h">
-    </QtMoc>
-    <QtMoc Include="demo\uidemo8.h">
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -350,25 +325,9 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="form\frmdevice.ui">
-    </QtUic>
     <QtUic Include="form\quicreator.ui">
     </QtUic>
-    <QtUic Include="demo\uidemo1.ui">
-    </QtUic>
     <QtUic Include="demo\uidemo2.ui">
-    </QtUic>
-    <QtUic Include="demo\uidemo3.ui">
-    </QtUic>
-    <QtUic Include="demo\uidemo4.ui">
-    </QtUic>
-    <QtUic Include="demo\uidemo5.ui">
-    </QtUic>
-    <QtUic Include="demo\uidemo6.ui">
-    </QtUic>
-    <QtUic Include="demo\uidemo7.ui">
-    </QtUic>
-    <QtUic Include="demo\uidemo8.ui">
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -716,9 +675,6 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Worker.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="Controller.h" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="file_copy.h" />

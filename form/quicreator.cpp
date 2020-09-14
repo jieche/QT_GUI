@@ -2,17 +2,10 @@
 #include "ui_quicreator.h"
 
 #include "quiwidget.h"
-#include "frmdevice.h"
 #include "highlighter.h"
 
-#include "demo/uidemo1.h"
 #include "demo/uidemo2.h"
-#include "demo/uidemo3.h"
-#include "demo/uidemo4.h"
-#include "demo/uidemo5.h"
-#include "demo/uidemo6.h"
-#include "demo/uidemo7.h"
-#include "demo/uidemo8.h"
+
 
 QUICreator::QUICreator(QWidget *parent) :
     QMainWindow(parent),
@@ -161,14 +154,6 @@ void QUICreator::initPanelWidget()
     qDeleteAll(frms);
     frms.clear();
 
-    for (int i = 0; i < 50; i++) {
-        frmDevice *frm = new frmDevice;
-        frm->setFixedHeight(100);
-        frm->setDeviceName(QString("温湿度设备 %1").arg(i + 1));
-        frm->setDeviceTemp(25.8);
-        frm->setDeviceDamp(56.5);
-        frms.append(frm);
-    }
 
     ui->widgetPanel->setWidget(frms, 7);
     ui->widgetPanel->setMargin(3);
@@ -921,8 +906,7 @@ void QUICreator::on_tabWidget_currentChanged(int index)
 
 void QUICreator::on_btnUIDemo1_clicked()
 {
-    UIDemo1 w;
-    w.exec();
+   
 }
 
 void QUICreator::on_btnUIDemo2_clicked()
@@ -933,36 +917,30 @@ void QUICreator::on_btnUIDemo2_clicked()
 
 void QUICreator::on_btnUIDemo3_clicked()
 {
-    UIDemo3 w;
-    w.exec();
+    
 }
 
 void QUICreator::on_btnUIDemo4_clicked()
 {
-    UIDemo4 w;
-    w.exec();
+    
 }
 
 void QUICreator::on_btnUIDemo5_clicked()
 {
-    UIDemo5 w;
-    w.exec();
+   
 }
 
 void QUICreator::on_btnUIDemo6_clicked()
 {
-    UIDemo6 w;
-    w.exec();
+    
 }
 
 void QUICreator::on_btnUIDemo7_clicked()
 {
-    UIDemo7 w;
-    w.exec();
+    
 }
 
 void QUICreator::on_btnUIDemo8_clicked()
 {
-    UIDemo8 w;
-    w.exec();
+    
 }
