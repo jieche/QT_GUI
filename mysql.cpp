@@ -6,12 +6,6 @@
 
 MySql::MySql()
 {
-	qDebug() << "Avaliable drivers;";
-	QStringList drivers = QSqlDatabase::drivers();
-	foreach(QString driver, drivers)
-		qDebug() << driver;
-
-	
 	CreateConnection();
 }
 
@@ -31,15 +25,6 @@ bool  MySql::CreateConnection()
 	if (db.open())
 	{
 		m_db = db;
-
-		/*QSqlQuery query;
-		query.exec("select * from zc_stor_info");
-		while (query.next())
-		{
-			int id = query.value(0).toInt();
-			QString str = query.value(1).toString();
-			qDebug() << id << "|" << str;
-		}*/
 	}
 	else
 	{

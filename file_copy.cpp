@@ -52,7 +52,7 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 {
 	QDir sourceDir(fromDir);
 	QDir targetDir(toDir);
-	 QString log= "拷贝目录:" + fromDir + toDir + "\n";
+	 QString log= "拷贝目录:" + fromDir +"->"+ toDir + "\n";
 	 qDebug() << log;
 	 emit sigLog(log);
 	if (!targetDir.exists()) {    /**< 如果目标目录不存在，则进行创建 */
@@ -137,10 +137,10 @@ void SFileCopy::doWork()
 		QString storage_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
 		QString burn_start_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
 		QString Stor_state = "2";
-		copyDirectoryFiles(dir.absoluteFilePath(), m_desPath+ "/" + timestr +"/"+ dir.baseName());
+		copyDirectoryFiles(dir.absoluteFilePath(), m_desPath+ "/" + timestr +"/"+ dir.fileName());
 		QString burn_end_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
 		Stor_state = "1";
-		QString remark = dir.baseName();
+		QString remark = dir.fileName();
 		QString sql = QString("insert into zc_stor_info(product_type,storage_path,storage_time,burn_start_time,burn_end_time,Stor_state,remark) values(%1,'%2',%3,'%4','%5',%6,'%7')")
 			.arg(product_type)//1
 			.arg(storage_path)//2

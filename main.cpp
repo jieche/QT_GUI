@@ -3,6 +3,8 @@
 #include "demo/appinit.h"
 #include <QApplication>
 
+#include "uidemo2.h"
+
 int main(int argc, char *argv[])
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,6,0))
@@ -57,7 +59,8 @@ int main(int argc, char *argv[])
     //设置左上角图标-图片文件
     //qui.setPixmap(QUIWidget::Lab_Ico, ":/main.ico");
 
-    qui.show();
-
+    //qui.show();
+	UIDemo2 w;
+	w.exec();
     return a.exec();
 }
