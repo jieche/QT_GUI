@@ -27,6 +27,7 @@ private:
 	void  requestAccessToken(void);                           //¼ÓËø//
 	void  releaseAccessToken(void);                           //½âËø//
 	bool CommitDB(QSqlQuery& qsQuery);
+	void readXML();
 private:
 	QString m_HostName;
 	QString m_DatabaseName;

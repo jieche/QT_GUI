@@ -59,10 +59,14 @@ void UIDemo2::logSlot(QString log)
 
 UIDemo2::~UIDemo2()
 {
+	SaveLog::Instance()->stop();
+	
 	m_thread.quit();
 	m_thread.wait();
+
+	m_cp_thread.quit();
+	m_cp_thread.wait();
     delete ui;
-	SaveLog::Instance()->stop();
 }
 
 void UIDemo2::getDrivers()

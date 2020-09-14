@@ -70,7 +70,7 @@
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <QtInstall>msvc2015_64</QtInstall>
-    <QtModules>core;network;gui;widgets;xml</QtModules>
+    <QtModules>core;network;gui;widgets;xml;sql</QtModules>
   </PropertyGroup>
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
     <Import Project="$(QtMsBuild)\qt.props" />
