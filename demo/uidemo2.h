@@ -19,7 +19,11 @@ class UIDemo2 : public QDialog
 
 public:
     explicit UIDemo2(QWidget *parent = 0);
-    ~UIDemo2();
+
+	void setStyle(const QString &str);
+
+	void on_btnNew_clicked();
+	~UIDemo2();
 	//获取盘符
 	void getDrivers();
 	void traverseDir(QString dirPath) const;

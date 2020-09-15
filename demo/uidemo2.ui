@@ -103,15 +103,7 @@
         <item>
          <widget class="QPlainTextEdit" name="plainTextEdit">
           <property name="plainText">
-           <string>每个人心中都有一段鲜不为人知的故事，
-如果不是某一天，
-某个不经意的回头一瞥，
-那段往事，
-就只能永远埋在记忆的最深处，
-那是回忆的尽头，
-可就无法避免那一触，
-无论你在上面用怎样淤厚的冷漠层层包裹，
-却总在瞬间崩溃。</string>
+           <string/>
           </property>
          </widget>
         </item>

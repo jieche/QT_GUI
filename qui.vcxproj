@@ -206,11 +206,9 @@
     <ClCompile Include="demo\appinit.cpp" />
     <ClCompile Include="file_copy.cpp" />
     <ClCompile Include="form\highlighter.cpp" />
+    <ClCompile Include="form\quiwidget.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="demo\navlistview.cpp" />
-    <ClCompile Include="form\panelwidget.cpp" />
-    <ClCompile Include="form\quicreator.cpp" />
-    <ClCompile Include="form\quiwidget.cpp" />
     <ClCompile Include="demo\sliderbar.cpp" />
     <ClCompile Include="demo\uidemo2.cpp" />
     <ClCompile Include="mysql.cpp" />
@@ -292,10 +290,6 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
     </QtMoc>
     <QtMoc Include="demo\navlistview.h">
     </QtMoc>
-    <QtMoc Include="form\panelwidget.h">
-    </QtMoc>
-    <QtMoc Include="form\quicreator.h">
-    </QtMoc>
     <QtMoc Include="form\quiwidget.h">
     </QtMoc>
     <QtMoc Include="demo\sliderbar.h">
@@ -325,8 +319,6 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="form\quicreator.ui">
-    </QtUic>
     <QtUic Include="demo\uidemo2.ui">
     </QtUic>
   </ItemGroup>

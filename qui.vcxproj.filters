@@ -59,15 +59,6 @@
     <ClCompile Include="demo\navlistview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="form\panelwidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="form\quicreator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="form\quiwidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="demo\sliderbar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -86,6 +77,9 @@
     <ClCompile Include="mysql.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="form\quiwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="demo\appinit.h">
@@ -98,12 +92,6 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="demo\navlistview.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="form\panelwidget.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="form\quicreator.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="form\quiwidget.h">
@@ -134,9 +122,6 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="form\quicreator.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
     <QtUic Include="demo\uidemo2.ui">
       <Filter>Form Files</Filter>
     </QtUic>

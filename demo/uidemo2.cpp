@@ -49,6 +49,28 @@ UIDemo2::UIDemo2(QWidget *parent) :
 	connect(m_FileCP, &SFileCopy::sigLog, this, &UIDemo2::logSlot, Qt::QueuedConnection);
 }
 
+
+void UIDemo2::setStyle(const QString &str)
+{
+	static QString qss;
+
+	if (qss == str) {
+		return;
+	}
+
+	qss = str;
+	QString paletteColor = str.mid(20, 7);
+	qApp->setPalette(QPalette(QColor(paletteColor)));
+	qApp->setStyleSheet(str);
+	/*ui->widgetPanel->setStyleSheet(QString("QFrame#boxPanel{border-width:0px;background:%1;}"
+		"QFrame#gboxDevicePanel,QFrame#gboxDeviceTitle{padding:3px;}")
+		.arg(paletteColor));
+
+#ifndef demo
+	ui->txtMain->setText(str);
+#endif*/
+}
+
 void UIDemo2::logSlot(QString log)
 {
 	ui->plainTextEdit->appendPlainText(log);
@@ -150,6 +172,21 @@ void UIDemo2::initForm()
     }
 
     //ui->btn1->click();
+	on_btnNew_clicked();
+}
+
+void UIDemo2::on_btnNew_clicked()
+{
+	QString fileName = ":/qss/psblack.css";
+
+	if (!fileName.isEmpty()) {
+		QFile file(fileName);
+
+		if (file.open(QFile::ReadOnly)) {
+			QString str = file.readAll();
+			setStyle(str);
+		}
+	}
 }
 
 bool UIDemo2::isMatch(const QString str, const QString& pattern)
