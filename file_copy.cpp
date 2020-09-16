@@ -151,9 +151,4 @@ void SFileCopy::doWork()
 			.arg(remark);//7
 		db.insert(sql);
 	}
-	
-	
-	
-
-	;
 }

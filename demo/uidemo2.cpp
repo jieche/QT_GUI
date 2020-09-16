@@ -302,6 +302,7 @@ void UIDemo2::on_btnMenu_Max_clicked()
 void UIDemo2::on_btnMenu_Close_clicked()
 {
     close();
+	exit(0);
 }
 
 void UIDemo2::readXML()
