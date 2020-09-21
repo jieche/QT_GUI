@@ -253,6 +253,29 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QToolButton" name="btnRefresh">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>刷新磁盘</string>
+           </property>
+           <property name="icon">
+            <iconset resource="demo.qrc">
+             <normaloff>:/demo/main_company.png</normaloff>:/demo/main_company.png</iconset>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextUnderIcon</enum>
+           </property>
+          </widget>
+         </item>
         </layout>
        </widget>
       </item>
@@ -407,8 +430,8 @@
    <slot>copySlot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>783</x>
-     <y>54</y>
+     <x>643</x>
+     <y>55</y>
     </hint>
     <hint type="destinationlabel">
      <x>960</x>
@@ -423,8 +446,8 @@
    <slot>searchSlot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>657</x>
-     <y>38</y>
+     <x>560</x>
+     <y>39</y>
     </hint>
     <hint type="destinationlabel">
      <x>678</x>
@@ -432,9 +455,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>btnRefresh</sender>
+   <signal>clicked()</signal>
+   <receiver>UIDemo2</receiver>
+   <slot>refreshSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>690</x>
+     <y>40</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>860</x>
+     <y>-36</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>copySlot()</slot>
   <slot>searchSlot()</slot>
+  <slot>refreshSlot()</slot>
  </slots>
 </ui>

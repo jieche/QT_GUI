@@ -54,6 +54,7 @@ private slots:
 	void readXML();
 	void searchSlot();
 	void copySlot();
+	void refreshSlot();
 	void logSlot(QString log);
 signals:
 	void process();

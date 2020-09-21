@@ -92,6 +92,18 @@ UIDemo2::~UIDemo2()
 
 void UIDemo2::getDrivers()
 {
+	//清空horizontalLayout布局内的所有元素
+	QLayoutItem *child;
+	while ((child = ui->layout_left->takeAt(0)) != 0)
+	{
+		//setParent为NULL，防止删除之后界面不消失
+		if (child->widget())
+		{
+			child->widget()->setParent(NULL);
+		}
+		delete child;
+	}
+	
 	foreach(const QStorageInfo &storage, QStorageInfo::mountedVolumes())
 	{
 		//磁盘名称 -》替换盘符
@@ -302,7 +314,7 @@ void UIDemo2::on_btnMenu_Max_clicked()
 void UIDemo2::on_btnMenu_Close_clicked()
 {
     close();
-	exit(0);
+	//exit(0);
 }
 
 void UIDemo2::readXML()
@@ -380,4 +392,8 @@ void UIDemo2::copySlot()
 	}
 }
 
+void UIDemo2::refreshSlot()
+{
+	getDrivers();
+}
 

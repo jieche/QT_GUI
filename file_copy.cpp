@@ -53,7 +53,7 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 	QDir sourceDir(fromDir);
 	QDir targetDir(toDir);
 	 QString log= "拷贝目录:" + fromDir +"->"+ toDir + "\n";
-	 qDebug() << log;
+	 qInfo() << log;
 	 emit sigLog(log);
 	if (!targetDir.exists()) {    /**< 如果目标目录不存在，则进行创建 */
 		if (!targetDir.mkdir(targetDir.absolutePath())) {
@@ -107,7 +107,7 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 			}
 			/// 进行文件copy
 			QString log = "拷贝文件:" + fileInfo.absoluteFilePath() + "->" + targetDir.absoluteFilePath(fileInfo.fileName()) + "\n";
-			qDebug() << log;
+			qInfo() << log;
 			emit sigLog(log);
 			//m_textEdit->appendPlainText(log);
 			if (!QFile::copy(fileInfo.filePath(), targetDir.filePath(fileInfo.fileName()))) {
