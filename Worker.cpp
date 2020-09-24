@@ -15,7 +15,23 @@ bool Worker::isMatch(const QString str, const QString& pattern)
 	return false;
 }
 
-void Worker::traverseRecusionDir(QString dirPath, QString pattern)
+bool Worker::isMatch(const QString str, const QStringList& patternList)
+{
+	//身份证 ^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$
+	//邮箱  ^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$
+	foreach(const auto& pattern, patternList)
+	{
+		const QRegularExpression regularExpression(pattern);
+		const QRegularExpressionMatch match = regularExpression.match(str);
+		if (match.hasMatch())
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void Worker::traverseRecusionDir(QString dirPath, QStringList pattern)
 {
 	QDir dir(dirPath);
 	QFileInfoList folder_list = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);   //获取当前所有目录
@@ -26,9 +42,9 @@ void Worker::traverseRecusionDir(QString dirPath, QString pattern)
 		QString namepath = folder_list.at(i).absoluteFilePath();    //获取路径
 		QFileInfo folderinfo = folder_list.at(i);
 		QString name = folderinfo.fileName();      //获取目录名
-		const QRegularExpression regularExpression(pattern);
-		const QRegularExpressionMatch match = regularExpression.match(name);
-		if (match.hasMatch())
+		//const QRegularExpression regularExpression(pattern);
+		//const QRegularExpressionMatch match = regularExpression.match(name);
+		if (isMatch(name,pattern))
 		{
 			m_mutex.lock();
 			m_fileInfoList.push_back(folder_list.at(i));
@@ -92,7 +108,7 @@ void Worker::doWork()
 	m_fileInfoList.clear();
 	m_mutex.unlock();
 	/* ... here is the expensive or blocking operation ... */
-	traverseRecusionDir(m_dirPath, m_pattern);
+	traverseRecusionDir(m_dirPath, m_patternList);
 	for (const auto& dir : m_fileInfoList)
 	{
 		m_mutex.lock();

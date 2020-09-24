@@ -11,12 +11,13 @@ public:
 	explicit Worker(QObject *parent = 0);
 
 	void setPath(QString path) { m_dirPath = path; }
-	void setPattern(QString pat) { m_pattern = pat; }
+	void setPattern(QStringList list) { m_patternList = list; }
 	void setTree(QTreeWidget* tree) { m_treeWidget = tree; }
 	
 private:
 	static bool isMatch(const QString str, const QString& pattern);
-	void traverseRecusionDir(QString dirPath, QString pattern);
+	bool isMatch(const QString str, const QStringList& patternList);
+	void traverseRecusionDir(QString dirPath, QStringList pattern);
 	QFileInfoList allfile(QTreeWidgetItem *root, QString path); 
 signals:
 	void currentNum(int);
@@ -38,7 +39,7 @@ public:
 	*/
 	QFileInfoList    m_fileInfoList;
 	QString m_dirPath;
-	QString m_pattern;
+	QStringList m_patternList;
 	QTreeWidget* m_treeWidget =nullptr;
 	QMutex m_mutex;
 

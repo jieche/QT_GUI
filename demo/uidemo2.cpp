@@ -214,6 +214,22 @@ bool UIDemo2::isMatch(const QString str, const QString& pattern)
 	return false;
 }
 
+bool UIDemo2::isMatch(const QString str, const QStringList& patternList)
+{
+	//身份证 ^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$
+	//邮箱  ^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$
+	foreach(const auto& pattern,patternList)
+	{
+		const QRegularExpression regularExpression(pattern);
+		const QRegularExpressionMatch match = regularExpression.match(str);
+		if (match.hasMatch())
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 void UIDemo2::traverseRecusionDir(QString dirPath,QString pattern)
 {
 	QDir dir(dirPath);
@@ -231,6 +247,7 @@ void UIDemo2::traverseRecusionDir(QString dirPath,QString pattern)
 		}
 		else
 		{
+			
 			traverseRecusionDir(namepath,pattern);  //进行递归
 		}
 	}
@@ -322,6 +339,7 @@ void UIDemo2::on_btnMenu_Close_clicked()
 void UIDemo2::readXML()
 {
 	//打开或创建文件
+	m_patternList.clear();
 	QFile file("config.xml"); //相对路径、绝对路径、资源路径都行
 	if (!file.open(QFile::ReadOnly))
 		return;
@@ -346,8 +364,11 @@ void UIDemo2::readXML()
 				auto path = e.attribute("path");
 				ui->label_des->setText(QString("目的地址：%1").arg(path));
 				m_desPath = path.trimmed();
-				auto pattern = e.attribute("pattern");
-				ui->lineEdit->setText(pattern);
+			}
+			if (e.tagName() == "pattern")
+			{
+				QString pattern = e.attribute("p");
+				m_patternList.push_back(pattern);
 			}
 		}
 		node = node.nextSibling(); //下一个兄弟节点,nextSiblingElement()是下一个兄弟元素，都差不多
@@ -357,21 +378,19 @@ void UIDemo2::readXML()
 
 void UIDemo2::searchSlot()
 {
+	readXML();
 	QToolButton *b = (QToolButton *)sender();
 	QString name = b->text();
-
-	/*QList<QToolButton *> btns = ui->widgetTop->findChildren<QToolButton *>();
-	foreach(QToolButton *btn, btns) {
-		if (btn == b) {
-			btn->setChecked(true);
-		}
-		else {
-			btn->setChecked(false);
-		}
-	}*/
+	
 	ui->treeWidget->clear();
 	m_Worker->setPath(m_srcPath);
-	m_Worker->setPattern(ui->lineEdit->text());
+	//m_Worker->setPattern(ui->lineEdit->text());
+	if(ui->lineEdit->text().isEmpty() ==false)
+	{
+		m_patternList.push_back(ui->lineEdit->text().trimmed());
+	}
+	m_patternList.removeDuplicates();//去重
+	m_Worker->setPattern(m_patternList);
 	m_Worker->setTree(ui->treeWidget);
 	
 	if(m_isSearching ==false)

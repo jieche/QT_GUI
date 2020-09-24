@@ -28,6 +28,7 @@ public:
 	void getDrivers();
 	void traverseDir(QString dirPath) const;
     static bool isMatch(QString str, const QString& pattern);
+	bool isMatch(const QString str, const QStringList& patternList);
 	void traverseRecusionDir(QString dirPath, QString pattern);
 	QFileInfoList allfile(QTreeWidgetItem *root, QString path); //参数为主函数中添加的item和路径名;
 private:
@@ -67,6 +68,7 @@ private:
 	bool m_isSearching = false;
 	bool m_isCopying = false;
 	QFileInfoList  m_DirList;
+	QStringList  m_patternList;
 };
 
 #endif // UIDEMO2_H
