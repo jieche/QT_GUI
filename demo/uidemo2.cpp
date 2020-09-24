@@ -203,6 +203,8 @@ void UIDemo2::on_btnNew_clicked()
 
 bool UIDemo2::isMatch(const QString str, const QString& pattern)
 {
+	//身份证 ^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$
+	//邮箱  ^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$
 	const QRegularExpression regularExpression(pattern);
 	const QRegularExpressionMatch match = regularExpression.match(str);
 	if (match.hasMatch()) 
@@ -314,7 +316,7 @@ void UIDemo2::on_btnMenu_Max_clicked()
 void UIDemo2::on_btnMenu_Close_clicked()
 {
     close();
-	//exit(0);
+	exit(0);
 }
 
 void UIDemo2::readXML()
@@ -395,5 +397,7 @@ void UIDemo2::copySlot()
 void UIDemo2::refreshSlot()
 {
 	getDrivers();
+	QToolButton *b = (QToolButton *)sender();
+	b->setChecked(false);
 }
 
