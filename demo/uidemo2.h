@@ -26,10 +26,6 @@ public:
 	~UIDemo2();
 	//获取盘符
 	void getDrivers();
-	void traverseDir(QString dirPath) const;
-    static bool isMatch(QString str, const QString& pattern);
-	bool isMatch(const QString str, const QStringList& patternList);
-	void traverseRecusionDir(QString dirPath, QString pattern);
 	QFileInfoList allfile(QTreeWidgetItem *root, QString path); //参数为主函数中添加的item和路径名;
 private:
     Ui::UIDemo2 *ui;

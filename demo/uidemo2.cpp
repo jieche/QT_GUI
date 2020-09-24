@@ -49,6 +49,17 @@ UIDemo2::UIDemo2(QWidget *parent) :
 	connect(m_FileCP, &SFileCopy::sigLog, this, &UIDemo2::logSlot, Qt::QueuedConnection);
 }
 
+UIDemo2::~UIDemo2()
+{
+	SaveLog::Instance()->stop();
+
+	m_thread.quit();
+	m_thread.wait();
+
+	m_cp_thread.quit();
+	m_cp_thread.wait();
+	delete ui;
+}
 
 void UIDemo2::setStyle(const QString &str)
 {
@@ -74,20 +85,6 @@ void UIDemo2::setStyle(const QString &str)
 void UIDemo2::logSlot(QString log)
 {
 	ui->plainTextEdit->appendPlainText(log);
-}
-
-
-
-UIDemo2::~UIDemo2()
-{
-	SaveLog::Instance()->stop();
-	
-	m_thread.quit();
-	m_thread.wait();
-
-	m_cp_thread.quit();
-	m_cp_thread.wait();
-    delete ui;
 }
 
 void UIDemo2::getDrivers()
@@ -197,58 +194,6 @@ void UIDemo2::on_btnNew_clicked()
 		if (file.open(QFile::ReadOnly)) {
 			QString str = file.readAll();
 			setStyle(str);
-		}
-	}
-}
-
-bool UIDemo2::isMatch(const QString str, const QString& pattern)
-{
-	//身份证 ^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$
-	//邮箱  ^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$
-	const QRegularExpression regularExpression(pattern);
-	const QRegularExpressionMatch match = regularExpression.match(str);
-	if (match.hasMatch()) 
-	{
-		return true;
-	}
-	return false;
-}
-
-bool UIDemo2::isMatch(const QString str, const QStringList& patternList)
-{
-	//身份证 ^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$
-	//邮箱  ^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$
-	foreach(const auto& pattern,patternList)
-	{
-		const QRegularExpression regularExpression(pattern);
-		const QRegularExpressionMatch match = regularExpression.match(str);
-		if (match.hasMatch())
-		{
-			return true;
-		}
-	}
-	return false;
-}
-
-void UIDemo2::traverseRecusionDir(QString dirPath,QString pattern)
-{
-	QDir dir(dirPath);
-	QFileInfoList folder_list = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);   //获取当前所有目录
-
-	for (int i = 0; i != folder_list.size(); ++i)         //自动递归添加各目录到上一级目录
-	{
-
-		QString namepath = folder_list.at(i).absoluteFilePath();    //获取路径
-		QFileInfo folderinfo = folder_list.at(i);
-		QString name = folderinfo.fileName();      //获取目录名
-		if(isMatch(name,pattern))
-		{
-			m_fileInfoList.push_back(folder_list.at(i));
-		}
-		else
-		{
-			
-			traverseRecusionDir(namepath,pattern);  //进行递归
 		}
 	}
 }
@@ -364,6 +309,7 @@ void UIDemo2::readXML()
 				auto path = e.attribute("path");
 				ui->label_des->setText(QString("目的地址：%1").arg(path));
 				m_desPath = path.trimmed();
+				getDrivers();//别名换盘符
 			}
 			if (e.tagName() == "pattern")
 			{
