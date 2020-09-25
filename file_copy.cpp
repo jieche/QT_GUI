@@ -4,16 +4,13 @@
 #include <QFileInfo>
 #include <QDebug>
 
-
 #include "MySql.h"
 #include "savelog.h"
-
 
 SFileCopy::SFileCopy(QObject *parent) : QObject(parent)
 {
 	m_createfile = new QDir();
 }
-
 
 SFileCopy::~SFileCopy()
 {
@@ -22,7 +19,6 @@ SFileCopy::~SFileCopy()
 		delete m_createfile;
 	}
 }
-
 
 bool SFileCopy::copyFileToPath(QString sourceDir, QString toDir, bool coverFileIfExist)
 {
@@ -47,14 +43,13 @@ bool SFileCopy::copyFileToPath(QString sourceDir, QString toDir, bool coverFileI
 	return true;
 }
 
-
 bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir, bool coverFileIfExist)
 {
 	QDir sourceDir(fromDir);
 	QDir targetDir(toDir);
-	 QString log= "拷贝目录:" + fromDir +"->"+ toDir + "\n";
-	 qInfo() << log;
-	 emit sigLog(log);
+	QString log = "拷贝目录:" + fromDir + "->" + toDir + "\n";
+	qInfo() << log;
+	emit sigLog(log);
 	if (!targetDir.exists()) {    /**< 如果目标目录不存在，则进行创建 */
 		if (!targetDir.mkdir(targetDir.absolutePath())) {
 			return false;
@@ -123,10 +118,10 @@ void SFileCopy::doWork()
 	//创建 时间戳文件夹
 	QDateTime datetime = QDateTime::currentDateTime();
 	QString timestr = datetime.toString("yyyyMMddHHmmss");  // 文件名称为“年月日时分秒”
-	QDir targetDir(m_desPath+"/"+ timestr);
+	QDir targetDir(m_desPath + "/" + timestr);
 	if (!targetDir.exists()) {    /**< 如果目标目录不存在，则进行创建 */
 		if (!targetDir.mkdir(targetDir.absolutePath())) {
-			return ;
+			return;
 		}
 	}
 	MySql  db;
@@ -137,7 +132,7 @@ void SFileCopy::doWork()
 		QString storage_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
 		QString burn_start_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
 		QString Stor_state = "2";
-		copyDirectoryFiles(dir.absoluteFilePath(), m_desPath+ "/" + timestr +"/"+ dir.fileName());
+		copyDirectoryFiles(dir.absoluteFilePath(), m_desPath + "/" + timestr + "/" + dir.fileName());
 		QString burn_end_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
 		Stor_state = "1";
 		QString remark = dir.fileName();

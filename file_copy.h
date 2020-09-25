@@ -16,10 +16,10 @@ public:
 	bool copyFileToPath(QString sourceDir, QString toDir, bool coverFileIfExist);
 
 	//¿½±´ÎÄ¼þ¼Ð£º
-	bool copyDirectoryFiles(const QString &fromDir, const QString &toDir, bool coverFileIfExist =true);
+	bool copyDirectoryFiles(const QString &fromDir, const QString &toDir, bool coverFileIfExist = true);
 	void setSrcPath(QFileInfoList path) { m_srcFileList = path; };
 	void setDesPath(QString path) { m_desPath = path; };
-	
+
 signals:
 	void sigCopyDirStation(float num);
 	void sigCopyDirOver();
