@@ -127,7 +127,7 @@ void SFileCopy::doWork()
 	MySql  db;
 	for (const auto& dir : m_srcFileList)
 	{
-		QString product_type = "0";
+		int product_type = 0;
 		QString storage_path = dir.absoluteFilePath();
 		QString storage_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
 		QString burn_start_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
@@ -136,14 +136,34 @@ void SFileCopy::doWork()
 		QString burn_end_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
 		Stor_state = "1";
 		QString remark = dir.fileName();
-		QString sql = QString("insert into zc_stor_info(product_type,storage_path,storage_time,burn_start_time,burn_end_time,Stor_state,remark) values(%1,'%2',%3,'%4','%5',%6,'%7')")
-			.arg(product_type)//1
-			.arg(storage_path)//2
-			.arg(storage_time)//3
-			.arg(burn_start_time)//4
-			.arg(burn_end_time)//5
-			.arg(Stor_state)//6
-			.arg(remark);//7
-		db.insert(sql);
+		QString sql = QString("insert into zc_stor_info(product_id,product_type,storage_path,storage_time,burn_start_time,burn_end_time,Stor_state,remark) values('%1','%2','%3','%4','%5',%6,'%7','%8')")
+			.arg("")//1
+			.arg(product_type)//2
+			.arg(storage_path)//3
+			.arg(storage_time)//4
+			.arg(burn_start_time)//5
+			.arg(burn_end_time)//6
+			.arg(Stor_state)//7
+			.arg(remark);//8
+		QVariant stor_info_id =  db.insert(sql);
+		{
+			QString log_type ="1";//1：存储日志；2：回迁日志
+			QString log_code ="0";//日志编码
+			QString log_title = "";//日志标题
+			QString log_create_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");;
+			QString log_remark;
+			QString log_context ="";
+
+			QString sql_log = QString("insert into zc_log_info(  stor_info_id, log_type, log_code, log_title,log_create_time, remark,log_context ) \
+															values(      '%1',        '%2',     '%3'  , '%4',     '%5'  ,         '%6','%7')")
+				.arg(stor_info_id.toString())//1
+				.arg(log_type)//2
+				.arg(log_code)//3
+				.arg(log_title)//4
+				.arg(log_create_time)//5
+				.arg(log_remark)//6
+				.arg(log_context);//7
+			db.insert(sql_log);
+		}
 	}
 }

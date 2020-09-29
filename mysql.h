@@ -21,7 +21,7 @@ private:
 public:
 	void closeDb();               //关闭数据库//
 
-	void insert(QString sql); //新增
+	QVariant insert(QString sql); //新增
 	bool MyDelete(int InputId);                               //删除//
 private:
 	void  requestAccessToken(void);                           //加锁//
@@ -30,6 +30,7 @@ private:
 	void readXML();
 private:
 	QString m_HostName;
+	int m_HostPort;
 	QString m_DatabaseName;
 	QString m_UserName;
 	QString m_Password;

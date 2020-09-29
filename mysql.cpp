@@ -20,7 +20,7 @@ bool  MySql::CreateConnection()
 {
 	QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
 	db.setHostName(m_HostName);
-	db.setPort(3306);
+	db.setPort(m_HostPort);
 	db.setDatabaseName(m_DatabaseName);
 	db.setUserName(m_UserName);
 	db.setPassword(m_Password);
@@ -43,12 +43,13 @@ void  MySql::closeDb()
 	}
 }
 
-void MySql::insert(QString sql )
+QVariant MySql::insert(QString sql )
 {
 	QSqlQuery qsQuery = QSqlQuery(m_db);
 	qsQuery.prepare(sql);
 	qsQuery.exec();
 	CommitDB(qsQuery);
+	return qsQuery.lastInsertId();
 }
 
 void  MySql::requestAccessToken(void)
@@ -100,6 +101,7 @@ void MySql::readXML()
 			if (e.tagName() == "info")
 			{
 				m_HostName = e.attribute("hostName").trimmed();
+				m_HostPort = e.attribute("hostPort").toInt();
 				m_DatabaseName = e.attribute("databaseName").trimmed();
 				m_UserName = e.attribute("UserName").trimmed();
 				m_Password = e.attribute("password").trimmed();
