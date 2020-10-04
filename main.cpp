@@ -1,7 +1,7 @@
 ﻿#include "demo/appinit.h"
 #include <QApplication>
 
-#include "uidemo2.h"
+#include "uidemo.h"
 
 int main(int argc, char *argv[])
 {
@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     AppInit::Instance()->start();
 
 
-	UIDemo2 w;
+	UIDemo w;
 	w.exec();
     return a.exec();
 }

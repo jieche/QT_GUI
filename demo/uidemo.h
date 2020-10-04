@@ -1,5 +1,5 @@
-﻿#ifndef UIDEMO2_H
-#define UIDEMO2_H
+﻿#ifndef UIDemo_H
+#define UIDemo_H
 
 #include <QDialog>
 #include <QStringList>
@@ -10,25 +10,25 @@
 #include "Worker.h"
 
 namespace Ui {
-class UIDemo2;
+class UIDemo;
 }
 
-class UIDemo2 : public QDialog
+class UIDemo : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit UIDemo2(QWidget *parent = 0);
+    explicit UIDemo(QWidget *parent = 0);
 
 	void setStyle(const QString &str);
 
 	void on_btnNew_clicked();
-	~UIDemo2();
+	~UIDemo();
 	//获取盘符
 	void getDrivers();
 	QFileInfoList allfile(QTreeWidgetItem *root, QString path); //参数为主函数中添加的item和路径名;
 private:
-    Ui::UIDemo2 *ui;
+    Ui::UIDemo *ui;
     bool max;
     QRect location;
     /**
@@ -67,4 +67,4 @@ private:
 	QStringList  m_patternList;
 };
 
-#endif // UIDEMO2_H
+#endif // UIDemo_H

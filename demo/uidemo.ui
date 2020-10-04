@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>UIDemo2</class>
- <widget class="QDialog" name="UIDemo2">
+ <class>UIDemo</class>
+ <widget class="QDialog" name="UIDemo">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -426,7 +426,7 @@
   <connection>
    <sender>btnCopy</sender>
    <signal>clicked()</signal>
-   <receiver>UIDemo2</receiver>
+   <receiver>UIDemo</receiver>
    <slot>copySlot()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -442,7 +442,7 @@
   <connection>
    <sender>btn_search</sender>
    <signal>clicked()</signal>
-   <receiver>UIDemo2</receiver>
+   <receiver>UIDemo</receiver>
    <slot>searchSlot()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -458,7 +458,7 @@
   <connection>
    <sender>btnRefresh</sender>
    <signal>clicked()</signal>
-   <receiver>UIDemo2</receiver>
+   <receiver>UIDemo</receiver>
    <slot>refreshSlot()</slot>
    <hints>
     <hint type="sourcelabel">

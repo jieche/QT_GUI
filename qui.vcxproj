@@ -210,7 +210,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="demo\navlistview.cpp" />
     <ClCompile Include="demo\sliderbar.cpp" />
-    <ClCompile Include="demo\uidemo2.cpp" />
+    <ClCompile Include="demo\uidemo.cpp" />
     <ClCompile Include="mysql.cpp" />
     <ClCompile Include="savelog.cpp" />
     <ClCompile Include="Worker.cpp" />
@@ -294,7 +294,7 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
     </QtMoc>
     <QtMoc Include="demo\sliderbar.h">
     </QtMoc>
-    <QtMoc Include="demo\uidemo2.h">
+    <QtMoc Include="demo\uidemo.h">
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -319,8 +319,7 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="demo\uidemo2.ui">
-    </QtUic>
+    <QtUic Include="demo\uidemo.ui" />
   </ItemGroup>
   <ItemGroup>
     <None Include="other\qss\bf\add_bottom.png" />

@@ -1,8 +1,8 @@
-﻿#include "uidemo2.h"
+﻿#include "UIDemo.h"
 
 #include <codecvt>
 
-#include "ui_uidemo2.h"
+#include "ui_UIDemo.h"
 #include "quiwidget.h"
 #include "mysql.h"
 
@@ -10,9 +10,9 @@
 #include "savelog.h"
 #include "QtXml\qdom.h"
 
-UIDemo2::UIDemo2(QWidget *parent) :
+UIDemo::UIDemo(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::UIDemo2)
+    ui(new Ui::UIDemo)
 {
     ui->setupUi(this);
 	readXML();
@@ -27,7 +27,7 @@ UIDemo2::UIDemo2(QWidget *parent) :
 	
     QUIWidget::setFormInCenter(this);
 	connect(&m_thread, &QThread::finished, m_Worker, &QObject::deleteLater);
-	connect(this, &UIDemo2::process, m_Worker, &Worker::doWork);
+	connect(this, &UIDemo::process, m_Worker, &Worker::doWork);
 	connect(m_Worker,&Worker::searchFinish,this,[=](){
 		m_isSearching = false;
 		ui->btn_search->setChecked(false);
@@ -35,7 +35,7 @@ UIDemo2::UIDemo2(QWidget *parent) :
 	});
 
 	connect(&m_cp_thread, &QThread::finished, m_FileCP, &QObject::deleteLater);
-	connect(this, &UIDemo2::processCP, m_FileCP, &SFileCopy::doWork);
+	connect(this, &UIDemo::processCP, m_FileCP, &SFileCopy::doWork);
 	connect(m_FileCP, &SFileCopy::sigCopyDirOver, this, [=]() {
 		m_isCopying = false;
 		ui->btnCopy->setChecked(false);
@@ -46,10 +46,10 @@ UIDemo2::UIDemo2(QWidget *parent) :
 	/*connect(m_FileCP, &SFileCopy::sigLog, this, [=](QString log) {
 		ui->plainTextEdit->appendPlainText(log);
 	}, Qt::QueuedConnection);*/
-	connect(m_FileCP, &SFileCopy::sigLog, this, &UIDemo2::logSlot, Qt::QueuedConnection);
+	connect(m_FileCP, &SFileCopy::sigLog, this, &UIDemo::logSlot, Qt::QueuedConnection);
 }
 
-UIDemo2::~UIDemo2()
+UIDemo::~UIDemo()
 {
 	SaveLog::Instance()->stop();
 
@@ -61,7 +61,7 @@ UIDemo2::~UIDemo2()
 	delete ui;
 }
 
-void UIDemo2::setStyle(const QString &str)
+void UIDemo::setStyle(const QString &str)
 {
 	static QString qss;
 
@@ -82,12 +82,12 @@ void UIDemo2::setStyle(const QString &str)
 #endif*/
 }
 
-void UIDemo2::logSlot(QString log)
+void UIDemo::logSlot(QString log)
 {
 	ui->plainTextEdit->appendPlainText(log);
 }
 
-void UIDemo2::getDrivers()
+void UIDemo::getDrivers()
 {
 	//清空horizontalLayout布局内的所有元素
 	QLayoutItem *child;
@@ -137,7 +137,7 @@ void UIDemo2::getDrivers()
 	
 }
 
-void UIDemo2::initForm()
+void UIDemo::initForm()
 {
     this->max = false;
     this->location = this->geometry();
@@ -184,7 +184,7 @@ void UIDemo2::initForm()
 	on_btnNew_clicked();
 }
 
-void UIDemo2::on_btnNew_clicked()
+void UIDemo::on_btnNew_clicked()
 {
 	QString fileName = ":/qss/psblack.css";
 
@@ -198,7 +198,7 @@ void UIDemo2::on_btnNew_clicked()
 	}
 }
 
-QFileInfoList UIDemo2::allfile(QTreeWidgetItem *root, QString path)         //参数为主函数中添加的item和路径名
+QFileInfoList UIDemo::allfile(QTreeWidgetItem *root, QString path)         //参数为主函数中添加的item和路径名
 {
 
 	/*添加path路径文件*/
@@ -237,7 +237,7 @@ QFileInfoList UIDemo2::allfile(QTreeWidgetItem *root, QString path)         //�
 	return file_list;
 }
 
-void UIDemo2::btnClick()
+void UIDemo::btnClick()
 {
     QPushButton *b = (QPushButton *)sender();
     QString path = b->text();
@@ -256,12 +256,12 @@ void UIDemo2::btnClick()
     ui->label_src->setText(QString("源地址：%1").arg(b->text()));
 }
 
-void UIDemo2::on_btnMenu_Min_clicked()
+void UIDemo::on_btnMenu_Min_clicked()
 {
     showMinimized();
 }
 
-void UIDemo2::on_btnMenu_Max_clicked()
+void UIDemo::on_btnMenu_Max_clicked()
 {
     if (max) {
         this->setGeometry(location);
@@ -275,13 +275,13 @@ void UIDemo2::on_btnMenu_Max_clicked()
     max = !max;
 }
 
-void UIDemo2::on_btnMenu_Close_clicked()
+void UIDemo::on_btnMenu_Close_clicked()
 {
     close();
 	exit(0);
 }
 
-void UIDemo2::readXML()
+void UIDemo::readXML()
 {
 	//打开或创建文件
 	m_patternList.clear();
@@ -322,7 +322,7 @@ void UIDemo2::readXML()
 	file.close();
 }
 
-void UIDemo2::searchSlot()
+void UIDemo::searchSlot()
 {
 	readXML();
 	QToolButton *b = (QToolButton *)sender();
@@ -346,7 +346,7 @@ void UIDemo2::searchSlot()
 	}
 }
 
-void UIDemo2::copySlot()
+void UIDemo::copySlot()
 {
 	QToolButton *b = (QToolButton *)sender();
 
@@ -359,7 +359,7 @@ void UIDemo2::copySlot()
 	}
 }
 
-void UIDemo2::refreshSlot()
+void UIDemo::refreshSlot()
 {
 	getDrivers();
 	QToolButton *b = (QToolButton *)sender();

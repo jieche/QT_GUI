@@ -62,9 +62,6 @@
     <ClCompile Include="demo\sliderbar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="demo\uidemo2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Worker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -78,6 +75,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="form\quiwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="demo\uidemo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -100,9 +100,6 @@
     <QtMoc Include="demo\sliderbar.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="demo\uidemo2.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="Worker.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -110,6 +107,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="savelog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="demo\uidemo.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -120,11 +120,6 @@
     <CustomBuild Include="temp\moc\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <QtUic Include="demo\uidemo2.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <None Include="other\qss\bf\add_bottom.png">
@@ -1113,5 +1108,10 @@
     <ClInclude Include="mysql.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="demo\uidemo.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
 </Project>
