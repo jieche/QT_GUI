@@ -50,7 +50,8 @@ SaveLog *SaveLog::Instance()
     if (self.isNull()) {
         static QMutex mutex;
         QMutexLocker locker(&mutex);
-        if (self.isNull()) {
+        if (self.isNull()) 
+		{
             self.reset(new SaveLog);
         }
     }

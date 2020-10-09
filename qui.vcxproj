@@ -212,6 +212,7 @@
     <ClCompile Include="demo\sliderbar.cpp" />
     <ClCompile Include="demo\uidemo.cpp" />
     <ClCompile Include="mysql.cpp" />
+    <ClCompile Include="postgres.cpp" />
     <ClCompile Include="savelog.cpp" />
     <ClCompile Include="Worker.cpp" />
   </ItemGroup>
@@ -675,6 +676,7 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mysql.h" />
+    <ClInclude Include="postgres.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

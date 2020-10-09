@@ -1,24 +1,24 @@
-#include "MySql.h"
+#include "Postgres.h"
 #include <QDir>
 #include<QDebug>
 #include <qdom.h>
 #include <QSqlQuery>
 #include <QSqlError>
 
-MySql::MySql()
+Postgres::Postgres()
 {
 	readXML();
 	CreateConnection();
 }
 
-MySql::~MySql()
+Postgres::~Postgres()
 {
 	closeDb();
 }
 
-bool  MySql::CreateConnection()
+bool  Postgres::CreateConnection()
 {
-	QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+	QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
 	db.setHostName(m_HostName);
 	db.setPort(m_HostPort);
 	db.setDatabaseName(m_DatabaseName);
@@ -30,12 +30,13 @@ bool  MySql::CreateConnection()
 	}
 	else
 	{
+		QString text = db.lastError().driverText();
 		qDebug() << "opened error"<< db.lastError();
 	}
 	return 0;
 }
 
-void  MySql::closeDb()
+void  Postgres::closeDb()
 {
 	if (m_db.isOpen())
 	{
@@ -43,7 +44,7 @@ void  MySql::closeDb()
 	}
 }
 
-QVariant MySql::insert(QString sql )
+QVariant Postgres::insert(QString sql )
 {
 	QSqlQuery qsQuery = QSqlQuery(m_db);
 	qsQuery.prepare(sql);
@@ -52,17 +53,17 @@ QVariant MySql::insert(QString sql )
 	return qsQuery.lastInsertId();
 }
 
-void  MySql::requestAccessToken(void)
+void  Postgres::requestAccessToken(void)
 {
 	mutex.lock();                           //如果已经lock且还未unlock，一直等待，直到unlock，然后lock//
 }
 
-void  MySql::releaseAccessToken(void)
+void  Postgres::releaseAccessToken(void)
 {
 	mutex.unlock();
 }
 
-bool  MySql::CommitDB(QSqlQuery& qsQuery)
+bool  Postgres::CommitDB(QSqlQuery& qsQuery)
 {
 	if (qsQuery.isActive())//成功执行sql语句 isActive会返回true,否则返回false
 	{
@@ -76,7 +77,7 @@ bool  MySql::CommitDB(QSqlQuery& qsQuery)
 	}
 }
 
-void MySql::readXML()
+void Postgres::readXML()
 {
 	//打开或创建文件
 	QFile file("config.xml"); //相对路径、绝对路径、资源路径都行
@@ -98,13 +99,14 @@ void MySql::readXML()
 		if (node.isElement()) //如果节点是元素
 		{
 			QDomElement e = node.toElement(); //转换为元素，注意元素和节点是两个数据结构，其实差不多
-			if (e.tagName() == "mysql")
+			if (e.tagName() == "postgres")
 			{
 				m_HostName = e.attribute("hostName").trimmed();
 				m_HostPort = e.attribute("hostPort").toInt();
 				m_DatabaseName = e.attribute("databaseName").trimmed();
 				m_UserName = e.attribute("UserName").trimmed();
 				m_Password = e.attribute("password").trimmed();
+				break;
 			}
 		}
 		node = node.nextSibling(); //下一个兄弟节点,nextSiblingElement()是下一个兄弟元素，都差不多

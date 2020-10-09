@@ -80,6 +80,9 @@
     <ClCompile Include="demo\uidemo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="postgres.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="demo\appinit.h">
@@ -1107,6 +1110,9 @@
   <ItemGroup>
     <ClInclude Include="mysql.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="postgres.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

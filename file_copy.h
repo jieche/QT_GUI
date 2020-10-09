@@ -1,6 +1,4 @@
 #pragma once
-#ifndef SFILECOPY_H
-#define SFILECOPY_H
 
 #include <QObject>
 #include <QDir>
@@ -35,4 +33,3 @@ private:
 	QString m_desPath;
 };
 
-#endif // SFILECOPY_H

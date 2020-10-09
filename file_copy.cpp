@@ -1,15 +1,20 @@
 #include "file_copy.h"
+#include "MySql.h"
+#include "savelog.h"
+#include "Postgres.h"
+
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
 #include <QDebug>
 
-#include "MySql.h"
-#include "savelog.h"
+
 
 SFileCopy::SFileCopy(QObject *parent) : QObject(parent)
 {
 	m_createfile = new QDir();
+	MySql sql;
+	Postgres psql;
 }
 
 SFileCopy::~SFileCopy()
@@ -128,7 +133,7 @@ void SFileCopy::doWork()
 	for (const auto& dir : m_srcFileList)
 	{
 		int product_type = 0;
-		QString storage_path = dir.absoluteFilePath();
+		QString storage_path = m_desPath + "/" + timestr + "/" + dir.fileName();
 		QString storage_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
 		QString burn_start_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
 		QString Stor_state = "2";
