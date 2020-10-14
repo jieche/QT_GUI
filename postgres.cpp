@@ -9,6 +9,7 @@ Postgres::Postgres()
 {
 	readXML();
 	CreateConnection();
+	
 }
 
 Postgres::~Postgres()
@@ -27,6 +28,7 @@ bool  Postgres::CreateConnection()
 	if (db.open())
 	{
 		m_db = db;
+		qDebug() << "opened sucess Postgres" ;
 	}
 	else
 	{

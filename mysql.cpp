@@ -27,6 +27,7 @@ bool  MySql::CreateConnection()
 	if (db.open())
 	{
 		m_db = db;
+		qInfo() << "opened sucess Mysql" ;
 	}
 	else
 	{
