@@ -18,7 +18,7 @@ MySql::~MySql()
 
 bool  MySql::CreateConnection()
 {
-	QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+	QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL","mysql");
 	db.setHostName(m_HostName);
 	db.setPort(m_HostPort);
 	db.setDatabaseName(m_DatabaseName);

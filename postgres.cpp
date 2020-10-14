@@ -19,7 +19,7 @@ Postgres::~Postgres()
 
 bool  Postgres::CreateConnection()
 {
-	QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
+	QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL","postgressql");
 	db.setHostName(m_HostName);
 	db.setPort(m_HostPort);
 	db.setDatabaseName(m_DatabaseName);
@@ -53,6 +53,19 @@ QVariant Postgres::insert(QString sql )
 	qsQuery.exec();
 	CommitDB(qsQuery);
 	return qsQuery.lastInsertId();
+}
+
+QString Postgres::selectOne(QString sql)
+{
+	QSqlQuery qsQuery = QSqlQuery(m_db);
+	qsQuery.prepare(sql);
+	qsQuery.exec();
+	CommitDB(qsQuery);
+	while (qsQuery.next())
+	{
+		return qsQuery.value(0).toString();
+	}
+	return "";
 }
 
 void  Postgres::requestAccessToken(void)

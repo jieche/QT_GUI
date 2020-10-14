@@ -22,6 +22,7 @@ public:
 	void closeDb();               //关闭数据库//
 
 	QVariant insert(QString sql); //新增
+	QString selectOne(QString sql); //查询
 	bool MyDelete(int InputId);                               //删除//
 private:
 	void  requestAccessToken(void);                           //加锁//

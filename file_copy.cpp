@@ -7,14 +7,13 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QDebug>
+#include "QSqlQuery"
 
 
 
 SFileCopy::SFileCopy(QObject *parent) : QObject(parent)
 {
 	m_createfile = new QDir();
-	MySql sql;
-	Postgres psql;
 }
 
 SFileCopy::~SFileCopy()
@@ -129,11 +128,25 @@ void SFileCopy::doWork()
 			return;
 		}
 	}
+	
+	
+	Postgres db_post;
 	MySql  db;
+
 	for (const auto& dir : m_srcFileList)
 	{
 		int product_type = 0;
 		QString storage_path = m_desPath + "/" + timestr + "/" + dir.fileName();
+
+		//查找 product_id
+
+		  //查找对应表
+		QString dataType = dir.fileName().split("_").at(0);//截取类型
+		QString sql_tab = QString("select attribute_table from data_model where model_name ='%1'").arg(dataType);
+		QString tabName = db_post.selectOne(sql_tab);
+		QString sql_id = QString("select productid from %1 where productname ='%2'").arg(tabName).arg(dir.fileName());
+		QString product_id = db_post.selectOne(sql_id);
+
 		QString storage_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
 		QString burn_start_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
 		QString Stor_state = "2";
@@ -142,7 +155,7 @@ void SFileCopy::doWork()
 		Stor_state = "1";
 		QString remark = dir.fileName();
 		QString sql = QString("insert into zc_stor_info(product_id,product_type,storage_path,storage_time,burn_start_time,burn_end_time,Stor_state,remark) values('%1','%2','%3','%4','%5',%6,'%7','%8')")
-			.arg("")//1
+			.arg(product_id)//1
 			.arg(product_type)//2
 			.arg(storage_path)//3
 			.arg(storage_time)//4
