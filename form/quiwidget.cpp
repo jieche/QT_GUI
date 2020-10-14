@@ -199,7 +199,7 @@ void QUIWidget::setFormInCenter(QWidget *frm)
     QDesktopWidget w;
     int deskWidth = w.availableGeometry().width();
     int deskHeight = w.availableGeometry().height();
-    QPoint movePoint(deskWidth / 2 - frmX / 2, deskHeight / 2 - frmY / 2);
+    QPoint movePoint(deskWidth / 2 - frmX / 2-100, deskHeight / 2 - frmY / 2);
     frm->move(movePoint);
 }
 

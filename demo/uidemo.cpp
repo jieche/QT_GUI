@@ -16,7 +16,6 @@ UIDemo::UIDemo(QWidget *parent) :
 {
     ui->setupUi(this);
 	readXML();
-	SaveLog::Instance()->start();//启动日志钩子
     this->initForm();
 	m_thread.start();
 	m_Worker->moveToThread(&m_thread);
@@ -24,6 +23,7 @@ UIDemo::UIDemo(QWidget *parent) :
 	m_cp_thread.start();
 	m_FileCP->moveToThread(&m_cp_thread);
 
+	qRegisterMetaType<QVector<int> >("QVector<int>");
 	
     QUIWidget::setFormInCenter(this);
 	connect(&m_thread, &QThread::finished, m_Worker, &QObject::deleteLater);
@@ -32,6 +32,8 @@ UIDemo::UIDemo(QWidget *parent) :
 		m_isSearching = false;
 		ui->btn_search->setChecked(false);
 		m_DirList = m_Worker->getFileList();
+		qDebug() << "检索完毕";
+		ui->plainTextEdit->appendPlainText("检索完毕");
 	});
 
 	connect(&m_cp_thread, &QThread::finished, m_FileCP, &QObject::deleteLater);
@@ -47,6 +49,7 @@ UIDemo::UIDemo(QWidget *parent) :
 		ui->plainTextEdit->appendPlainText(log);
 	}, Qt::QueuedConnection);*/
 	connect(m_FileCP, &SFileCopy::sigLog, this, &UIDemo::logSlot, Qt::QueuedConnection);
+	connect(m_Worker, &Worker::sigLog, this, &UIDemo::logSearchSlot, Qt::QueuedConnection);
 }
 
 UIDemo::~UIDemo()
@@ -73,18 +76,25 @@ void UIDemo::setStyle(const QString &str)
 	QString paletteColor = str.mid(20, 7);
 	qApp->setPalette(QPalette(QColor(paletteColor)));
 	qApp->setStyleSheet(str);
-	/*ui->widgetPanel->setStyleSheet(QString("QFrame#boxPanel{border-width:0px;background:%1;}"
-		"QFrame#gboxDevicePanel,QFrame#gboxDeviceTitle{padding:3px;}")
-		.arg(paletteColor));
-
-#ifndef demo
-	ui->txtMain->setText(str);
-#endif*/
+	
 }
 
 void UIDemo::logSlot(QString log)
 {
 	ui->plainTextEdit->appendPlainText(log);
+}
+void UIDemo::logSearchSlot(QString log)
+{
+	static int flag = 0;
+	switch (flag%5)
+	{
+	case 0:ui->plainTextEdit->setPlainText("检索中..."); break;
+	case 1:ui->plainTextEdit->setPlainText("检索中....."); break;
+	case 2:ui->plainTextEdit->setPlainText("检索中......."); break;
+	case 3:ui->plainTextEdit->setPlainText("检索中.........."); break;
+	case 4:ui->plainTextEdit->setPlainText("检索中............."); break;
+	}
+	flag++;
 }
 
 void UIDemo::getDrivers()
@@ -157,21 +167,18 @@ void UIDemo::initForm()
     ui->labTitle->setFont(QFont("Microsoft Yahei", 20));
     this->setWindowTitle(ui->labTitle->text());
 
-    //ui->label->setStyleSheet("QLabel{font:30pt;}");
 	getDrivers();
     QSize icoSize(32, 32);
     int icoWidth = 85;
 
     //设置顶部导航按钮
     QList<QToolButton *> tbtns = ui->widgetTop->findChildren<QToolButton *>();
-    foreach (QToolButton *btn, tbtns) {
+    foreach (QToolButton *btn, tbtns)
+	{
         btn->setIconSize(icoSize);
         btn->setMinimumWidth(icoWidth);
         btn->setCheckable(true);
     }
-     //connect(ui->btn_search, SIGNAL(clicked()), this, SLOT(buttonClick()));
-
-    //ui->btnMain->click();
 
     //设置左侧导航按钮
     QList<QPushButton *> btns = ui->widgetLeft->findChildren<QPushButton *>();
@@ -180,7 +187,6 @@ void UIDemo::initForm()
         connect(btn, SIGNAL(clicked()), this, SLOT(btnClick()));
     }
 
-    //ui->btn1->click();
 	on_btnNew_clicked();
 }
 
@@ -330,7 +336,6 @@ void UIDemo::searchSlot()
 	
 	ui->treeWidget->clear();
 	m_Worker->setPath(m_srcPath);
-	//m_Worker->setPattern(ui->lineEdit->text());
 	if(ui->lineEdit->text().isEmpty() ==false)
 	{
 		m_patternList.push_back(ui->lineEdit->text().trimmed());
@@ -343,6 +348,8 @@ void UIDemo::searchSlot()
 	{
 		emit process();
 		m_isSearching = true;
+		qDebug() << "检索中...";
+		ui->plainTextEdit->appendPlainText("检索中...");
 	}
 }
 

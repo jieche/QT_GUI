@@ -3,8 +3,11 @@
 #include <QObject>
 #include <QDir>
 
+
+
 class SFileCopy : public QObject
 {
+	
 	Q_OBJECT
 public:
 	explicit SFileCopy(QObject *parent = 0);

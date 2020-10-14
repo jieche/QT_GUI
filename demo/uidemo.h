@@ -52,7 +52,8 @@ private slots:
 	void searchSlot();
 	void copySlot();
 	void refreshSlot();
-	void logSlot(QString log);
+	void logSlot(QString log); 
+	void logSearchSlot(QString log); 
 signals:
 	void process();
 	void processCP();

@@ -10,9 +10,10 @@
 #include "QSqlQuery"
 
 
-
 SFileCopy::SFileCopy(QObject *parent) : QObject(parent)
 {
+	
+
 	m_createfile = new QDir();
 }
 
@@ -52,13 +53,14 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 	QDir sourceDir(fromDir);
 	QDir targetDir(toDir);
 	QString log = "拷贝目录:" + fromDir + "->" + toDir + "\n";
-	qInfo() << log;
+	qDebug() << log;
 	emit sigLog(log);
 	if (!targetDir.exists()) {    /**< 如果目标目录不存在，则进行创建 */
 		if (!targetDir.mkdir(targetDir.absolutePath())) {
 			return false;
 		}
 	}
+
 	QFileInfoList fileInfoList = sourceDir.entryInfoList();
 
 
@@ -73,7 +75,7 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 		m_total = fileInfoList.count() - 2 - isfileTMP; // 2为.和..
 		m_value = 0;
 		m_firstRead = false;
-		qDebug() << "a copyDirectoryFiles:" << fileInfoList.count() << m_total << isfileTMP;
+		qDebug() << "a copyDirectoryFiles:" << m_total << isfileTMP;
 		emit sigCopyDirStation(m_value / m_total);
 		if (m_value == m_total) {
 			m_firstRead = true;
@@ -106,9 +108,8 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 			}
 			/// 进行文件copy
 			QString log = "拷贝文件:" + fileInfo.absoluteFilePath() + "->" + targetDir.absoluteFilePath(fileInfo.fileName()) + "\n";
-			qInfo() << log;
+			qDebug() << log;
 			emit sigLog(log);
-			//m_textEdit->appendPlainText(log);
 			if (!QFile::copy(fileInfo.filePath(), targetDir.filePath(fileInfo.fileName()))) {
 				return false;
 			}
@@ -124,8 +125,13 @@ void SFileCopy::doWork()
 	QString timestr = datetime.toString("yyyyMMddHHmmss");  // 文件名称为“年月日时分秒”
 	QDir targetDir(m_desPath + "/" + timestr);
 	if (!targetDir.exists()) {    /**< 如果目标目录不存在，则进行创建 */
-		if (!targetDir.mkdir(targetDir.absolutePath())) {
-			return;
+		if (targetDir.mkdir(targetDir.absolutePath())) {
+			qDebug() << "创建目标时间文件夹";
+			emit sigLog("创建目标时间文件夹");
+		}
+		else
+		{
+			return ;
 		}
 	}
 	
@@ -138,14 +144,19 @@ void SFileCopy::doWork()
 		int product_type = 0;
 		QString storage_path = m_desPath + "/" + timestr + "/" + dir.fileName();
 
-		//查找 product_id
-
-		  //查找对应表
+		 //查找对应表
 		QString dataType = dir.fileName().split("_").at(0);//截取类型
 		QString sql_tab = QString("select attribute_table from data_model where model_name ='%1'").arg(dataType);
+		qDebug() << sql_tab;
 		QString tabName = db_post.selectOne(sql_tab);
 		QString sql_id = QString("select productid from %1 where productname ='%2'").arg(tabName).arg(dir.fileName());
-		QString product_id = db_post.selectOne(sql_id);
+		qDebug() << sql_id;
+		QString product_id_str = db_post.selectOne(sql_id);
+		int product_id = -1;
+		if(!product_id_str.isEmpty())
+		{
+			product_id = product_id_str.toInt();
+		}
 
 		QString storage_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
 		QString burn_start_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
@@ -163,6 +174,7 @@ void SFileCopy::doWork()
 			.arg(burn_end_time)//6
 			.arg(Stor_state)//7
 			.arg(remark);//8
+		qDebug() << sql;
 		QVariant stor_info_id =  db.insert(sql);
 		{
 			QString log_type ="1";//1：存储日志；2：回迁日志
@@ -181,7 +193,9 @@ void SFileCopy::doWork()
 				.arg(log_create_time)//5
 				.arg(log_remark)//6
 				.arg(log_context);//7
+			qDebug() << sql_log;
 			db.insert(sql_log);
 		}
 	}
 }
+

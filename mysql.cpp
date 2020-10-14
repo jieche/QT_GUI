@@ -18,7 +18,7 @@ MySql::~MySql()
 
 bool  MySql::CreateConnection()
 {
-	QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL","mysql");
+	QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL", "mysql");
 	db.setHostName(m_HostName);
 	db.setPort(m_HostPort);
 	db.setDatabaseName(m_DatabaseName);
@@ -27,11 +27,11 @@ bool  MySql::CreateConnection()
 	if (db.open())
 	{
 		m_db = db;
-		qInfo() << "opened sucess Mysql" ;
+		qDebug() << "opened sucess Mysql";
 	}
 	else
 	{
-		qDebug() << "opened error"<< db.lastError();
+		qDebug() << "opened error" << db.lastError();
 	}
 	return 0;
 }
@@ -44,7 +44,7 @@ void  MySql::closeDb()
 	}
 }
 
-QVariant MySql::insert(QString sql )
+QVariant MySql::insert(QString sql)
 {
 	QSqlQuery qsQuery = QSqlQuery(m_db);
 	qsQuery.prepare(sql);

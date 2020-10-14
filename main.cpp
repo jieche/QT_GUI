@@ -1,6 +1,8 @@
 ﻿#include "demo/appinit.h"
 #include <QApplication>
 
+
+#include "savelog.h"
 #include "uidemo.h"
 
 int main(int argc, char *argv[])
@@ -15,7 +17,7 @@ int main(int argc, char *argv[])
 
   
     AppInit::Instance()->start();
-
+	SaveLog::Instance()->start();//启动日志钩子
 
 	UIDemo w;
 	w.exec();

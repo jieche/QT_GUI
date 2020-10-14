@@ -38,7 +38,7 @@ void Worker::traverseRecusionDir(QString dirPath, QStringList pattern)
 
 	for (int i = 0; i != folder_list.size(); ++i)         //自动递归添加各目录到上一级目录
 	{
-
+		emit sigLog(".");
 		QString namepath = folder_list.at(i).absoluteFilePath();    //获取路径
 		QFileInfo folderinfo = folder_list.at(i);
 		QString name = folderinfo.fileName();      //获取目录名

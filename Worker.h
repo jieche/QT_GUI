@@ -24,8 +24,8 @@ signals:
 	void workDone();
 	void resultReady(const QString &result);
 	void searchFinish();
+	void sigLog(QString content);
 public slots:
-	//void stopThread();
 	void doWork();
 
 protected:

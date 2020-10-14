@@ -9,7 +9,7 @@ Postgres::Postgres()
 {
 	readXML();
 	CreateConnection();
-	
+
 }
 
 Postgres::~Postgres()
@@ -19,7 +19,7 @@ Postgres::~Postgres()
 
 bool  Postgres::CreateConnection()
 {
-	QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL","postgressql");
+	QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL", "postgressql");
 	db.setHostName(m_HostName);
 	db.setPort(m_HostPort);
 	db.setDatabaseName(m_DatabaseName);
@@ -28,12 +28,12 @@ bool  Postgres::CreateConnection()
 	if (db.open())
 	{
 		m_db = db;
-		qDebug() << "opened sucess Postgres" ;
+		qDebug() << "opened sucess Postgres";
 	}
 	else
 	{
 		QString text = db.lastError().driverText();
-		qDebug() << "opened error"<< db.lastError();
+		qDebug() << "opened error" << db.lastError() ;
 	}
 	return 0;
 }
@@ -46,7 +46,7 @@ void  Postgres::closeDb()
 	}
 }
 
-QVariant Postgres::insert(QString sql )
+QVariant Postgres::insert(QString sql)
 {
 	QSqlQuery qsQuery = QSqlQuery(m_db);
 	qsQuery.prepare(sql);
