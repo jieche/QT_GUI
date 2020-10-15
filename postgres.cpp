@@ -83,11 +83,13 @@ bool  Postgres::CommitDB(QSqlQuery& qsQuery)
 	if (qsQuery.isActive())//成功执行sql语句 isActive会返回true,否则返回false
 	{
 		m_db.commit();
+		qDebug() << "执行成功";
 		return true;
 	}
 	else
 	{
 		m_db.rollback();
+		qDebug() << "执行失败";
 		return false;
 	}
 }

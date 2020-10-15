@@ -41,6 +41,7 @@ UIDemo::UIDemo(QWidget *parent) :
 	connect(m_FileCP, &SFileCopy::sigCopyDirOver, this, [=]() {
 		m_isCopying = false;
 		ui->btnCopy->setChecked(false);
+		ui->plainTextEdit->appendPlainText("...拷贝完毕...");
 	});
 	connect(m_FileCP, &SFileCopy::sigCopyDirStation, this, [=](float value) {
 		ui->progressBar->setValue(value*100);
@@ -313,8 +314,9 @@ void UIDemo::readXML()
 			if (e.tagName() == "info")
 			{
 				auto path = e.attribute("path");
-				ui->label_des->setText(QString("目的地址：%1").arg(path));
 				m_desPath = path.trimmed();
+				m_desPath.replace('\\','/');
+				ui->label_des->setText(QString("目的地址：%1").arg(m_desPath));
 				getDrivers();//别名换盘符
 			}
 			if (e.tagName() == "pattern")

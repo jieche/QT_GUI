@@ -157,6 +157,10 @@ void SFileCopy::doWork()
 		{
 			product_id = product_id_str.toInt();
 		}
+		else
+		{
+			qDebug() << "²éÑ¯idÊ§°Ü";
+		}
 
 		QString storage_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
 		QString burn_start_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
