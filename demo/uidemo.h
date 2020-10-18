@@ -39,6 +39,7 @@ private:
 	QThread       m_thread;
 	SFileCopy     *m_FileCP = new SFileCopy;
 	QThread		  m_cp_thread;
+	QString       m_title = "数据迁徙平台";
 
 private slots:
     void initForm();
@@ -59,6 +60,7 @@ signals:
 	void processCP();
 private:
 	QString m_srcPath;
+	QString m_srcTag;
 	QString m_desPath;
 	QString m_desDiskFlag;
 	QString m_desDiskName;

@@ -164,7 +164,7 @@ void UIDemo::initForm()
     ui->widgetTitle->setProperty("form", "title");
     ui->widgetLeft->setProperty("nav", "left");
     ui->widgetTop->setProperty("nav", "top");
-    ui->labTitle->setText("数据迁移平台");
+    ui->labTitle->setText(m_title);
     ui->labTitle->setFont(QFont("Microsoft Yahei", 20));
     this->setWindowTitle(ui->labTitle->text());
 
@@ -248,6 +248,7 @@ void UIDemo::btnClick()
 {
     QPushButton *b = (QPushButton *)sender();
     QString path = b->text();
+	m_srcTag = path.split("(").at(0);;
 	path = path.split("(").at(1);
 	path = path.split(")").at(0);
 	m_srcPath = path;
@@ -314,6 +315,11 @@ void UIDemo::readXML()
 			if (e.tagName() == "info")
 			{
 				auto path = e.attribute("path");
+				auto title = e.attribute("title");
+				if(!title.isEmpty())
+				{
+					m_title = title;
+				}
 				m_desPath = path.trimmed();
 				m_desPath.replace('\\','/');
 				ui->label_des->setText(QString("目的地址：%1").arg(m_desPath));
@@ -358,7 +364,8 @@ void UIDemo::searchSlot()
 void UIDemo::copySlot()
 {
 	QToolButton *b = (QToolButton *)sender();
-
+	
+	m_FileCP->setSrcDiskTag(m_srcTag);
 	m_FileCP->setSrcPath(m_DirList);
 	m_FileCP->setDesPath(m_desPath);
 	if (m_isCopying == false)

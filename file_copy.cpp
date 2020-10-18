@@ -120,6 +120,22 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 
 void SFileCopy::doWork()
 {
+	//创建 -磁盘标签文件夹
+	{
+		QDir targetDir(m_desPath + "/" + m_srcTag);
+		if (!targetDir.exists()) {    /**< 如果目标目录不存在，则进行创建 */
+			if (targetDir.mkdir(targetDir.absolutePath())) {
+				qDebug() << "创建磁盘标签文件夹";
+				emit sigLog("创建磁盘标签文件夹");
+				m_desPath = targetDir.absolutePath();
+			}
+			else
+			{
+				return;
+			}
+		}
+	}
+
 	//创建 时间戳文件夹
 	QDateTime datetime = QDateTime::currentDateTime();
 	QString timestr = datetime.toString("yyyyMMddHHmmss");  // 文件名称为“年月日时分秒”

@@ -19,7 +19,8 @@ public:
 	//¿½±´ÎÄ¼þ¼Ð£º
 	bool copyDirectoryFiles(const QString &fromDir, const QString &toDir, bool coverFileIfExist = true);
 	void setSrcPath(QFileInfoList path) { m_srcFileList = path; };
-	void setDesPath(QString path) { m_desPath = path; };
+	void setDesPath(QString path) {		m_desPath = path; };
+	void setSrcDiskTag(QString tag) {   m_srcTag = tag; };
 
 signals:
 	void sigCopyDirStation(float num);
@@ -34,5 +35,6 @@ private:
 	bool m_firstRead = true;
 	QFileInfoList m_srcFileList;
 	QString m_desPath;
+	QString m_srcTag;
 };
 
