@@ -138,6 +138,7 @@ void UIDemo::getDrivers()
 				auto btn = new QPushButton(ui->widgetLeft);
 				btn->setText(storage.displayName() + "(" + path + ")");
 				btn->setToolTip(storage.displayName() + "(" + path + ")");
+				connect(btn, SIGNAL(clicked()), this, SLOT(btnClick()));
 				ui->layout_left->addWidget(btn, 0);
 			}
 		}
@@ -180,14 +181,6 @@ void UIDemo::initForm()
         btn->setMinimumWidth(icoWidth);
         btn->setCheckable(true);
     }
-
-    //设置左侧导航按钮
-    QList<QPushButton *> btns = ui->widgetLeft->findChildren<QPushButton *>();
-    foreach (QPushButton *btn, btns) {
-        btn->setCheckable(true);
-        connect(btn, SIGNAL(clicked()), this, SLOT(btnClick()));
-    }
-
 	on_btnNew_clicked();
 }
 
@@ -262,6 +255,8 @@ void UIDemo::btnClick()
     }
 
     ui->label_src->setText(QString("源地址：%1").arg(b->text()));
+	ui->treeWidget->clear();
+	ui->plainTextEdit->clear();
 }
 
 void UIDemo::on_btnMenu_Min_clicked()
