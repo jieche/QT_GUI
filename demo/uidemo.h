@@ -64,6 +64,7 @@ private:
 	QString m_desPath;
 	QString m_desDiskFlag;
 	QString m_desDiskName;
+	QString m_desDiskLinuxPath;
 	bool m_isSearching = false;
 	bool m_isCopying = false;
 	QFileInfoList  m_DirList;

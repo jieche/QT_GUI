@@ -316,9 +316,14 @@ void UIDemo::readXML()
 			{
 				auto path = e.attribute("path");
 				auto title = e.attribute("title");
-				if(!title.isEmpty())
+				if (!title.isEmpty())
 				{
 					m_title = title;
+				}
+				auto linuxPath = e.attribute("linux");
+				if(!linuxPath.isEmpty())
+				{
+					m_desDiskLinuxPath = linuxPath;
 				}
 				m_desPath = path.trimmed();
 				m_desPath.replace('\\','/');
@@ -368,6 +373,7 @@ void UIDemo::copySlot()
 	m_FileCP->setSrcDiskTag(m_srcTag);
 	m_FileCP->setSrcPath(m_DirList);
 	m_FileCP->setDesPath(m_desPath);
+	m_FileCP->setDesLinuxPath(m_desDiskLinuxPath);
 	if (m_isCopying == false)
 	{
 		emit processCP();
