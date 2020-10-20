@@ -158,7 +158,7 @@ void SFileCopy::doWork()
 	for (const auto& dir : m_srcFileList)
 	{
 		int product_type = 0;
-		QString storage_path = m_desLinuxPath + "/" + timestr + "/" + dir.fileName();
+		QString storage_path = m_desLinuxPath + "/" + m_srcTag + "/" + timestr + "/" + dir.fileName();
 
 		 //查找对应表
 		QString dataType = dir.fileName().split("_").at(0);//截取类型
