@@ -17,5 +17,36 @@
 	<pattern p="^TRIPLESAT_[0-9]_PMS_[0-9A-Za-z]{2}_\d{14}_([\s\S]*)" />
 	<pattern p="^JB[0-9A-Za-z]*\-[0-9]_[A-Za-z]{3}(\-[A-Z]_[0-9]{9}|_[0-9]{9})([\s\S]*)" />
 	<pattern p="^TH02\-[0-9A-Za-z]{4}_[A-Za-z]{5}_\d{14}_([\s\S]*)" />
-	
+  <!--<contain key = ""  model_name = "_1A"/>-->
+  <!--<contain key = ""  model_name = "1A_DGP"/>-->
+  <!--<contain key = ""  model_name = "1A_GFB"/>-->
+  <!--<contain key = ""  model_name = "1A_SXZ"/>-->
+  <!--<contain key = ""  model_name = "1B"/>-->
+  <contain key = "1B_DGP"  model_name = "1B_DGP"/>
+  <contain key = "1B_GFB"  model_name = "1B_GFB"/>
+  <contain key = "1B_SXZ"  model_name = "1B_SXZ"/>
+  <!--<contain key = ""  model_name = "B3DM_3D"/>-->
+  <prefix key = "TRIPLESAT"  model_name = "BJ02"/>
+  <!--<contain key = ""  model_name = "DOM_ORDINARY"/>-->
+  <!--<contain key = ""  model_name = "DOM_STANDARD"/>-->
+  <prefix key = "GF1"  model_name = "GF1"/>
+  <prefix key = "GF2"  model_name = "GF2"/>
+  <prefix key = "GF6"  model_name = "GF6"/>
+  <prefix key = "GF7"  model_name = "GF7"/>
+  <prefix key = "SV"  model_name = "GJ"/>
+  <prefix key = "JB"  model_name = "JB"/>
+  <prefix key = "JL"  model_name = "JL101A"/>
+  <!--<contain key = ""  model_name = "LANDSAT"/>-->
+  <!--<contain key = ""  model_name = "MULTI_LENS"/>-->
+  <!--<contain key = ""  model_name = "ORDINARY"/>-->
+  <!--<prefix key = ""  model_name = "OSGB_3D"/>-->
+  <!--<prefix key = ""  model_name = "SingleBand"/>-->
+  <prefix key = "SV"  model_name = "SV"/>
+  <!--<map key = ""  model_name = "TH"/>-->
+  <prefix key = "TH02"  model_name = "TH02"/>
+  <!--<prefix key = ""  model_name = "UAVDATA"/>-->
+  <!--<maprefixp key = ""  model_name = "VECTOR"/>-->
+  <prefix key = "ZY02"  model_name = "ZY2"/>
+  <prefix key = "ZY3"  model_name = "ZY3"/>
+  <prefix key = "zy3"  model_name = "ZY3"/>
 </lib>

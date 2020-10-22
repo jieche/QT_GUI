@@ -69,6 +69,8 @@ private:
 	bool m_isCopying = false;
 	QFileInfoList  m_DirList;
 	QStringList  m_patternList;
+	QMap<QString, QString> m_prefixMap;
+	QMap<QString, QString> m_containMap;
 };
 
 #endif // UIDemo_H

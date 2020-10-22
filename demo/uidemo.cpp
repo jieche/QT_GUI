@@ -330,6 +330,16 @@ void UIDemo::readXML()
 				QString pattern = e.attribute("p");
 				m_patternList.push_back(pattern);
 			}
+			if (e.tagName() == "prefix")
+			{
+				QString key = e.attribute("key");
+				m_prefixMap[key] = e.attribute("model_name");
+			}
+			if (e.tagName() == "contain")
+			{
+				QString key = e.attribute("key");
+				m_containMap[key] = e.attribute("model_name");
+			}
 		}
 		node = node.nextSibling(); //下一个兄弟节点,nextSiblingElement()是下一个兄弟元素，都差不多
 	}
@@ -369,6 +379,8 @@ void UIDemo::copySlot()
 	m_FileCP->setSrcPath(m_DirList);
 	m_FileCP->setDesPath(m_desPath);
 	m_FileCP->setDesLinuxPath(m_desDiskLinuxPath);
+	m_FileCP->setPrefixMap(m_prefixMap);
+	m_FileCP->setContainMap(m_containMap);
 	if (m_isCopying == false)
 	{
 		emit processCP();

@@ -118,6 +118,28 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 	return true;
 }
 
+QString SFileCopy::find_model_name(QString dirName)
+{
+	QMap<QString, QString>::Iterator  it;
+
+	for (it = m_prefixMap.begin();it != m_prefixMap.end();++it)
+	{
+		//前缀匹配
+		if(dirName.left(it.key().size()) == it.key())
+		{
+			return it.value();
+		}
+	}
+	for (it = m_containMap.begin(); it != m_containMap.end(); ++it)
+	{
+		//contain匹配
+		if (dirName.contains(it.key()))
+		{
+			return it.value();
+		}
+	}
+}
+
 void SFileCopy::doWork()
 {
 	//创建 -磁盘标签文件夹
@@ -127,13 +149,14 @@ void SFileCopy::doWork()
 			if (targetDir.mkdir(targetDir.absolutePath())) {
 				qDebug() << "创建磁盘标签文件夹";
 				emit sigLog("创建磁盘标签文件夹");
-				m_desPath = targetDir.absolutePath();
+				
 			}
 			else
 			{
 				return;
 			}
 		}
+	  m_desPath = targetDir.absolutePath();
 	}
 
 	//创建 时间戳文件夹
@@ -161,7 +184,8 @@ void SFileCopy::doWork()
 		QString storage_path = m_desLinuxPath + "/" + m_srcTag + "/" + timestr + "/" + dir.fileName();
 
 		 //查找对应表
-		QString dataType = dir.fileName().split("_").at(0);//截取类型
+		//QString dataType = dir.fileName().split("_").at(0);//截取类型
+		QString dataType = find_model_name(dir.fileName());
 		QString sql_tab = QString("select attribute_table from data_model where model_name ='%1'").arg(dataType);
 		qDebug() << sql_tab;
 		QString tabName = db_post.selectOne(sql_tab);

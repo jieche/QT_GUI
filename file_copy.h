@@ -21,8 +21,11 @@ public:
 	void setSrcPath(QFileInfoList path) { m_srcFileList = path; };
 	void setDesPath(QString path) { m_desPath = path; };
 	void setDesLinuxPath(QString path) { m_desLinuxPath = path; };
-	void setSrcDiskTag(QString tag) {   m_srcTag = tag; };
-
+	void setSrcDiskTag(QString tag) { m_srcTag = tag; };
+	void setPrefixMap(QMap<QString, QString> m) { m_prefixMap = m; };
+	void setContainMap(QMap<QString, QString> m) { m_containMap = m; };
+private:
+	QString find_model_name(QString dirName);
 signals:
 	void sigCopyDirStation(float num);
 	void sigCopyDirOver();
@@ -38,5 +41,7 @@ private:
 	QString m_desPath;
 	QString m_desLinuxPath;
 	QString m_srcTag;
+	QMap<QString, QString> m_prefixMap;
+	QMap<QString, QString> m_containMap;
 };
 
