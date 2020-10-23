@@ -342,7 +342,7 @@ void UIDemo::readXML()
 				m_containMap[key] = e.attribute("model_name");
 			}
 		}
-		node = node.nextSibling(); //下一个兄弟节点,nextSiblingElement()是下一个兄弟元素，都差不多
+		node = node.nextSibling(); //下一个兄弟节点,nextSiblingElement()是下一个兄弟元素，
 	}
 	file.close();
 }

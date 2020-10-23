@@ -675,6 +675,7 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
     <QtMoc Include="savelog.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="globe_xml.h" />
     <ClInclude Include="mysql.h" />
     <ClInclude Include="postgres.h" />
   </ItemGroup>

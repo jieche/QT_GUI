@@ -30,7 +30,7 @@ private:
 	void readXML();
 private:
 	QString m_HostName;
-	int m_HostPort;
+	int		m_HostPort;
 	QString m_DatabaseName;
 	QString m_UserName;
 	QString m_Password;
