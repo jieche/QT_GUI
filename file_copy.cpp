@@ -76,17 +76,17 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 		m_value = 0;
 		m_firstRead = false;
 		qDebug() << "a copyDirectoryFiles:" << m_total << isfileTMP;
-		emit sigCopyDirStation(m_value / m_total);
+		//emit sigCopyDirStation(m_value / m_total);
 		if (m_value == m_total) {
 			m_firstRead = true;
-			emit sigCopyDirStation(1);
+			//emit sigCopyDirStation(1);
 			emit sigCopyDirOver();
 		}
 	}
 	else {
 		m_value++;
 		qDebug() << "a copyDirectoryFiles:" << m_value << m_total;
-		emit sigCopyDirStation(m_value / m_total);
+		//emit sigCopyDirStation(m_value / m_total);
 		if ((m_value / m_total == 1) || (m_value > m_total) || (m_value == m_total)) {
 			m_firstRead = true;
 			emit sigCopyDirOver();
@@ -120,12 +120,12 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 
 QString SFileCopy::find_model_name(QString dirName)
 {
-	QMap<QString, QString>::Iterator  it;
+	QMap<QString, QString>::Iterator it;
 
-	for (it = m_prefixMap.begin();it != m_prefixMap.end();++it)
+	for (it = m_prefixMap.begin(); it != m_prefixMap.end(); ++it)
 	{
 		//Ç°×ºÆ¥Åä
-		if(dirName.left(it.key().size()) == it.key())
+		if (dirName.left(it.key().size()) == it.key())
 		{
 			return it.value();
 		}
@@ -138,6 +138,7 @@ QString SFileCopy::find_model_name(QString dirName)
 			return it.value();
 		}
 	}
+	return QString();
 }
 
 void SFileCopy::doWork()
@@ -178,8 +179,11 @@ void SFileCopy::doWork()
 	Postgres db_post;
 	MySql  db;
 
+	float countNum = 0;
+	float total = m_srcFileList.size();
 	for (const auto& dir : m_srcFileList)
 	{
+		
 		int product_type = 0;
 		QString storage_path = m_desLinuxPath + "/" + m_srcTag + "/" + timestr + "/" + dir.fileName();
 
@@ -240,6 +244,8 @@ void SFileCopy::doWork()
 			qDebug() << sql_log;
 			db.insert(sql_log);
 		}
+		++countNum;
+		emit sigCopyDirStation(countNum / total);
 	}
 }
 

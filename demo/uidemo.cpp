@@ -257,6 +257,7 @@ void UIDemo::btnClick()
     ui->label_src->setText(QString("源地址：%1").arg(b->text()));
 	ui->treeWidget->clear();
 	ui->plainTextEdit->clear();
+	ui->progressBar->setValue(0);
 }
 
 void UIDemo::on_btnMenu_Min_clicked()
@@ -348,9 +349,17 @@ void UIDemo::readXML()
 
 void UIDemo::searchSlot()
 {
+	ui->plainTextEdit->clear();
 	readXML();
 	QToolButton *b = (QToolButton *)sender();
 	QString name = b->text();
+	if(m_srcPath.isEmpty())
+	{
+		ui->plainTextEdit->appendPlainText("未选择源磁盘...");
+		ui->btn_search->setChecked(false);
+		return;
+	}
+
 	
 	ui->treeWidget->clear();
 	m_Worker->setPath(m_srcPath);
@@ -374,7 +383,15 @@ void UIDemo::searchSlot()
 void UIDemo::copySlot()
 {
 	QToolButton *b = (QToolButton *)sender();
+
+	if(m_DirList.size()<1)
+	{
+		ui->btnCopy->setChecked(false);
+		return;
+	}
 	
+	ui->plainTextEdit->clear();
+	ui->progressBar->setValue(0);
 	m_FileCP->setSrcDiskTag(m_srcTag);
 	m_FileCP->setSrcPath(m_DirList);
 	m_FileCP->setDesPath(m_desPath);
