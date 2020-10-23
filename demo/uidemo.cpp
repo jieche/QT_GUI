@@ -23,6 +23,7 @@ UIDemo::UIDemo(QWidget *parent) :
 	m_cp_thread.start();
 	m_FileCP->moveToThread(&m_cp_thread);
 
+	ui->plainTextEdit->setReadOnly(true);
 	qRegisterMetaType<QVector<int> >("QVector<int>");
 	
     QUIWidget::setFormInCenter(this);
@@ -46,9 +47,6 @@ UIDemo::UIDemo(QWidget *parent) :
 	connect(m_FileCP, &SFileCopy::sigCopyDirStation, this, [=](float value) {
 		ui->progressBar->setValue(value*100);
 	});
-	/*connect(m_FileCP, &SFileCopy::sigLog, this, [=](QString log) {
-		ui->plainTextEdit->appendPlainText(log);
-	}, Qt::QueuedConnection);*/
 	connect(m_FileCP, &SFileCopy::sigLog, this, &UIDemo::logSlot, Qt::QueuedConnection);
 	connect(m_Worker, &Worker::sigLog, this, &UIDemo::logSearchSlot, Qt::QueuedConnection);
 }

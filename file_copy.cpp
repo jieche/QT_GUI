@@ -79,8 +79,6 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 		//emit sigCopyDirStation(m_value / m_total);
 		if (m_value == m_total) {
 			m_firstRead = true;
-			//emit sigCopyDirStation(1);
-			emit sigCopyDirOver();
 		}
 	}
 	else {
@@ -89,7 +87,6 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 		//emit sigCopyDirStation(m_value / m_total);
 		if ((m_value / m_total == 1) || (m_value > m_total) || (m_value == m_total)) {
 			m_firstRead = true;
-			emit sigCopyDirOver();
 		}
 	}
 	foreach(QFileInfo fileInfo, fileInfoList) {
@@ -247,5 +244,6 @@ void SFileCopy::doWork()
 		++countNum;
 		emit sigCopyDirStation(countNum / total);
 	}
+	emit sigCopyDirOver();
 }
 
