@@ -227,7 +227,7 @@ void SFileCopy::doWork()
 		QString burn_start_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
 		bool ok = copyDirectoryFiles(dir.absoluteFilePath(), m_desPath + "/" + timestr + "/" + dir.fileName());
 		QString burn_end_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
-		QString Stor_state = ok?1:4;
+		int Stor_state = ok?1:4;
 		QString remark = dir.fileName();
 		QString sql = QString("insert into zc_stor_info(product_id,product_type,storage_path,storage_time,burn_start_time,burn_end_time,Stor_state,remark) values('%1','%2','%3','%4','%5',%6,'%7','%8')")
 			.arg(product_id)//1
@@ -239,7 +239,8 @@ void SFileCopy::doWork()
 			.arg(Stor_state)//7
 			.arg(remark);//8
 		qDebug() << sql;
-		QVariant stor_info_id =  db.insert(sql);
+		QVariant stor_info_id_var =  db.insert(sql);
+		int		 stor_info_id = stor_info_id_var.toInt() > 0 ? stor_info_id_var.toInt() : -1;
 		{
 			QString log_type ="1";//1：存储日志；2：回迁日志
 			QString log_code ="0";//日志编码
@@ -248,9 +249,8 @@ void SFileCopy::doWork()
 			QString log_remark;
 			QString log_context ="";
 
-			QString sql_log = QString("insert into zc_log_info(  stor_info_id, log_type, log_code, log_title,log_create_time, remark,log_context ) \
-															values(      '%1',        '%2',     '%3'  , '%4',     '%5'  ,         '%6','%7')")
-				.arg(stor_info_id.toString())//1
+			QString sql_log = QString("insert into zc_log_info(  stor_info_id, log_type, log_code, log_title,log_create_time, remark,log_context )values(      '%1',        '%2',     '%3'  , '%4',     '%5'  ,         '%6','%7')")
+				.arg(stor_info_id)//1
 				.arg(log_type)//2
 				.arg(log_code)//3
 				.arg(log_title)//4
