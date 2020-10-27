@@ -18,8 +18,10 @@ public:
 
 	//¿½±´ÎÄ¼þ¼Ð£º
 	bool copyDirectoryFiles(const QString &fromDir, const QString &toDir, bool coverFileIfExist = true);
+	quint64 dirFileSize(const QString &path);
 	void setSrcPath(QFileInfoList path) { m_srcFileList = path; };
 	void setDesPath(QString path) { m_desPath = path; };
+	void setDesDiskName(QString name) { m_desDiskName = name; };
 	void setDesLinuxPath(QString path) { m_desLinuxPath = path; };
 	void setSrcDiskTag(QString tag) { m_srcTag = tag; };
 	void setPrefixMap(QMap<QString, QString> m) { m_prefixMap = m; };
@@ -39,6 +41,7 @@ private:
 	bool m_firstRead = true;
 	QFileInfoList m_srcFileList;
 	QString m_desPath;
+	QString m_desDiskName;
 	QString m_desLinuxPath;
 	QString m_srcTag;
 	QMap<QString, QString> m_prefixMap;

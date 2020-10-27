@@ -109,26 +109,27 @@ void UIDemo::getDrivers()
 		}
 		delete child;
 	}
-	
 	foreach(const QStorageInfo &storage, QStorageInfo::mountedVolumes())
 	{
 		//磁盘名称 -》替换盘符
 		QString diskName = m_desPath.split(":").at(0).trimmed();
-		if(diskName == storage.displayName())
+		if (diskName == storage.displayName()||diskName == storage.rootPath().split(":").at(0))
 		{
 			m_desDiskFlag = storage.rootPath().split(":").at(0);
 			m_desDiskName = storage.displayName();
 			QString  path = ui->label_des->text().split(":").at(1);
-			
-			ui->label_des->setText(QString("目的地址：%1").arg(storage.displayName() + "(" + m_desDiskFlag +":"+path + ")"));
-		    
-			if(m_desPath.left(m_desDiskName.length()) == m_desDiskName)
+
+			ui->label_des->setText(QString("目的地址：%1").arg(storage.displayName() + "(" + m_desDiskFlag + ":" + path + ")"));
+
+			if (m_desPath.left(m_desDiskName.length()) == m_desDiskName)
 			{
 				m_desPath.replace(0, m_desDiskName.length(), m_desDiskFlag);
 			}
-			
+			break;
 		}
-		
+	}
+	foreach(const QStorageInfo &storage, QStorageInfo::mountedVolumes())
+	{
 		if (storage.isValid() && storage.isReady()) {
 			if (!storage.isReadOnly()) 
 			{
@@ -393,6 +394,7 @@ void UIDemo::copySlot()
 	m_FileCP->setSrcDiskTag(m_srcTag);
 	m_FileCP->setSrcPath(m_DirList);
 	m_FileCP->setDesPath(m_desPath);
+	m_FileCP->setDesDiskName(m_desDiskName);
 	m_FileCP->setDesLinuxPath(m_desDiskLinuxPath);
 	m_FileCP->setPrefixMap(m_prefixMap);
 	m_FileCP->setContainMap(m_containMap);

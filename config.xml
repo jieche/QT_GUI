@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lib>
-    <info path="D:\src" title ="数据迁移平台" linux="/home/ossm/vol/test"  />
+    <info path="闲云:\src" title ="数据迁移平台" linux="/home/ossm/vol/test"  />
     <mysql   hostName="121.36.54.141" hostPort="30306" databaseName ="test" UserName ="root" password ="hthtroot" />
 	<postgres hostName="121.36.54.141" hostPort="31000" databaseName ="data_manage" UserName ="postgres" password ="123456" />
 	<pattern p="^TH[0-9]{2}-[0-9]{2}_[A-Za-z]\d{8}[0-9]{7}_1B_[A-Z]{3}_([\s\S]*)" />

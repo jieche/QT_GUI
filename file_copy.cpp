@@ -115,6 +115,25 @@ bool SFileCopy::copyDirectoryFiles(const QString &fromDir, const QString &toDir,
 	return true;
 }
 
+quint64 SFileCopy::dirFileSize(const QString &path)
+{
+	QDir dir(path);
+	quint64 size = 0;
+	//dir.entryInfoList(QDir::Files)返回文件信息
+	foreach(QFileInfo fileInfo, dir.entryInfoList(QDir::Files))
+	{
+		//计算文件大小
+		size += fileInfo.size();
+	}
+	//dir.entryList(QDir::Dirs|QDir::NoDotAndDotDot)返回所有子目录，并进行过滤
+	foreach(QString subDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot))
+	{
+		//若存在子目录，则递归调用dirFileSize()函数
+		size += dirFileSize(path + QDir::separator() + subDir);
+	}
+	return size;
+}
+
 QString SFileCopy::find_model_name(QString dirName)
 {
 	QMap<QString, QString>::Iterator it;
@@ -181,17 +200,18 @@ void SFileCopy::doWork()
 	for (const auto& dir : m_srcFileList)
 	{
 		
-		int product_type = 0;
+		int product_type = -1;
 		QString storage_path = m_desLinuxPath + "/" + m_srcTag + "/" + timestr + "/" + dir.fileName();
 
 		 //查找对应表
 		//QString dataType = dir.fileName().split("_").at(0);//截取类型
 		QString dataType = find_model_name(dir.fileName());
-		QString sql_tab = QString("select attribute_table from data_model where model_name ='%1'").arg(dataType);
+		QString sql_tab = QString("select attribute_table ,uuid from data_model where model_name ='%1'").arg(dataType);
 		qDebug() << sql_tab;
-		QString tabName = db_post.selectOne(sql_tab);
-		QString sql_id = QString("select productid from %1 where productname ='%2'").arg(tabName).arg(dir.fileName());
+		QString tabNameAndId = db_post.selectTwo(sql_tab);
+		QString sql_id = QString("select productid from %1 where productname ='%2'").arg(tabNameAndId.split("*").at(0)).arg(dir.fileName());
 		qDebug() << sql_id;
+		product_type = tabNameAndId.split("*").at(1).toInt();
 		QString product_id_str = db_post.selectOne(sql_id);
 		int product_id = -1;
 		if(!product_id_str.isEmpty())
@@ -205,10 +225,9 @@ void SFileCopy::doWork()
 
 		QString storage_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
 		QString burn_start_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
-		QString Stor_state = "2";
-		copyDirectoryFiles(dir.absoluteFilePath(), m_desPath + "/" + timestr + "/" + dir.fileName());
+		bool ok = copyDirectoryFiles(dir.absoluteFilePath(), m_desPath + "/" + timestr + "/" + dir.fileName());
 		QString burn_end_time = datetime.currentDateTime().toString("yyyyMMddHHmmss");
-		Stor_state = "1";
+		QString Stor_state = ok?1:4;
 		QString remark = dir.fileName();
 		QString sql = QString("insert into zc_stor_info(product_id,product_type,storage_path,storage_time,burn_start_time,burn_end_time,Stor_state,remark) values('%1','%2','%3','%4','%5',%6,'%7','%8')")
 			.arg(product_id)//1
@@ -240,6 +259,28 @@ void SFileCopy::doWork()
 				.arg(log_context);//7
 			qDebug() << sql_log;
 			db.insert(sql_log);
+		}
+		{
+			QString move_disk_code = m_desDiskName;
+			//QString move_product_id = "0";
+			//QString move_product_type = "";
+			//QString move_file_name = "";
+			int move_file_size = dirFileSize(dir.absoluteFilePath());
+			QString move_move_date = datetime.currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+			int move_status = ok?1:2; //0--创建 1--成功 2--失败
+
+
+			QString sql_move = QString("insert into t_disk_move_result(   disk_code, product_id, product_type, file_name,file_size, move_date,status ) \
+															values(     '%1',        '%2',     '%3'  , '%4',     '%5'  ,  '%6','%7')")
+				.arg(move_disk_code)//1
+				.arg(product_id)//2
+				.arg(product_type)//3
+				.arg(storage_path)//4
+				.arg(move_file_size)//5
+				.arg(move_move_date)//6
+				.arg(move_status);//7
+			qDebug() << sql_move;
+			db_post.insert(sql_move);
 		}
 		++countNum;
 		emit sigCopyDirStation(countNum / total);

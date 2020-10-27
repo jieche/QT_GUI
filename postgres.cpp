@@ -68,6 +68,19 @@ QString Postgres::selectOne(QString sql)
 	return "";
 }
 
+QString Postgres::selectTwo(QString sql)
+{
+	QSqlQuery qsQuery = QSqlQuery(m_db);
+	qsQuery.prepare(sql);
+	qsQuery.exec();
+	CommitDB(qsQuery);
+	while (qsQuery.next())
+	{
+		return qsQuery.value(0).toString() + "*" + qsQuery.value(1).toString();
+	}
+	return "";
+}
+
 void  Postgres::requestAccessToken(void)
 {
 	mutex.lock();                           //如果已经lock且还未unlock，一直等待，直到unlock，然后lock//

@@ -23,6 +23,7 @@ public:
 
 	QVariant insert(QString sql); //新增
 	QString selectOne(QString sql); //查询
+	QString selectTwo(QString sql);
 	bool MyDelete(int InputId);                               //删除//
 private:
 	void  requestAccessToken(void);                           //加锁//
