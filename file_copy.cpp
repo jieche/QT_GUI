@@ -267,8 +267,7 @@ void SFileCopy::doWork()
 			//QString move_file_name = "";
 			int move_file_size = dirFileSize(dir.absoluteFilePath());
 			QString move_move_date = datetime.currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
-			int move_status = ok?1:2; //0--创建 1--成功 2--失败
-
+			int move_status = 0; //0--创建 1--成功 2--失败
 
 			QString sql_move = QString("insert into t_disk_move_result(   disk_code, product_id, product_type, file_name,file_size, move_date,status ) \
 															values(     '%1',        '%2',     '%3'  , '%4',     '%5'  ,  '%6','%7')")
