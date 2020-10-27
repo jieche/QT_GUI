@@ -113,11 +113,11 @@ void UIDemo::getDrivers()
 	{
 		//磁盘名称 -》替换盘符
 		QString diskName = m_desPath.split(":").at(0).trimmed();
+		QString path = m_desPath.split(":").at(1).trimmed();
 		if (diskName == storage.displayName()||diskName == storage.rootPath().split(":").at(0))
 		{
 			m_desDiskFlag = storage.rootPath().split(":").at(0);
 			m_desDiskName = storage.displayName();
-			QString  path = ui->label_des->text().split(":").at(1);
 
 			ui->label_des->setText(QString("目的地址：%1").arg(storage.displayName() + "(" + m_desDiskFlag + ":" + path + ")"));
 
