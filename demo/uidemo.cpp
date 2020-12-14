@@ -44,9 +44,11 @@ UIDemo::UIDemo(QWidget *parent) :
 		ui->btnCopy->setChecked(false);
 		ui->plainTextEdit->appendPlainText("...拷贝完毕...");
 	});
+	
 	connect(m_FileCP, &SFileCopy::sigCopyDirStation, this, [=](float value) {
 		ui->progressBar->setValue(value*100);
 	});
+	
 	connect(m_FileCP, &SFileCopy::sigLog, this, &UIDemo::logSlot, Qt::QueuedConnection);
 	connect(m_Worker, &Worker::sigLog, this, &UIDemo::logSearchSlot, Qt::QueuedConnection);
 }
@@ -82,6 +84,7 @@ void UIDemo::logSlot(QString log)
 {
 	ui->plainTextEdit->appendPlainText(log);
 }
+
 void UIDemo::logSearchSlot(QString log)
 {
 	static int flag = 0;

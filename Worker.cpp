@@ -42,8 +42,6 @@ void Worker::traverseRecusionDir(QString dirPath, QStringList pattern)
 		QString namepath = folder_list.at(i).absoluteFilePath();    //获取路径
 		QFileInfo folderinfo = folder_list.at(i);
 		QString name = folderinfo.fileName();      //获取目录名
-		//const QRegularExpression regularExpression(pattern);
-		//const QRegularExpressionMatch match = regularExpression.match(name);
 		if (isMatch(name,pattern))
 		{
 			m_mutex.lock();
@@ -59,7 +57,6 @@ void Worker::traverseRecusionDir(QString dirPath, QStringList pattern)
 
 QFileInfoList Worker::allfile(QTreeWidgetItem *root, QString path)         //参数为主函数中添加的item和路径名
 {
-
 	/*添加path路径文件*/
 	QDir dir(path);          //遍历各级子目录
 	QDir dir_file(path);    //遍历子目录中所有文件
@@ -69,6 +66,7 @@ QFileInfoList Worker::allfile(QTreeWidgetItem *root, QString path)         //参
 	for (int i = 0; i < list_file.size(); ++i) {       //将当前目录中所有文件添加到treewidget中
 		QFileInfo fileInfo = list_file.at(i);
 		QString name2 = fileInfo.fileName();
+		
 		m_mutex.lock();
 		QTreeWidgetItem* child = new QTreeWidgetItem(QStringList() << name2);
 		child->setIcon(0, QIcon(":/file/image/link.ico"));
@@ -77,8 +75,6 @@ QFileInfoList Worker::allfile(QTreeWidgetItem *root, QString path)         //参
 		m_mutex.unlock();
 	}
 
-
-	//QFileInfoList file_list = dir.entryInfoList(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
 	QFileInfoList folder_list = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);   //获取当前所有目录
 
 	for (int i = 0; i != folder_list.size(); i++)         //自动递归添加各目录到上一级目录
@@ -87,17 +83,16 @@ QFileInfoList Worker::allfile(QTreeWidgetItem *root, QString path)         //参
 		QString namepath = folder_list.at(i).absoluteFilePath();    //获取路径
 		QFileInfo folderinfo = folder_list.at(i);
 		QString name = folderinfo.fileName();      //获取目录名
+		
 		m_mutex.lock();
 		QTreeWidgetItem* childroot = new QTreeWidgetItem(QStringList() << name);
 		childroot->setIcon(0, QIcon(":/file/image/link.ico"));
 		childroot->setCheckState(1, Qt::Checked);
 		root->addChild(childroot);              //将当前目录添加成path的子项
 		m_mutex.unlock();
+		
 		QFileInfoList child_file_list = allfile(childroot, namepath);          //进行递归
-		//file_list.append(child_file_list);
-		//file_list.append(name);
 	}
-	//return file_list;
 	return QFileInfoList();
 }
 
@@ -107,8 +102,10 @@ void Worker::doWork()
 	m_mutex.lock();
 	m_fileInfoList.clear();
 	m_mutex.unlock();
+	
 	/* ... here is the expensive or blocking operation ... */
 	traverseRecusionDir(m_dirPath, m_patternList);
+	
 	for (const auto& dir : m_fileInfoList)
 	{
 		m_mutex.lock();
@@ -116,7 +113,6 @@ void Worker::doWork()
 		root->setText(0, dir.fileName());
 		root->setToolTip(0,dir.absoluteFilePath());
 		m_mutex.unlock();
-		//allfile(root, dir.absoluteFilePath());
 	}
 	
 	emit resultReady(result);
