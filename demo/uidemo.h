@@ -39,22 +39,19 @@ private:
 	QThread       m_thread;
 	SFileCopy     *m_FileCP = new SFileCopy;
 	QThread		  m_cp_thread;
-	QString       m_title = "数据迁徙平台";
+	QString       m_title = "生成注册码";
 
 private slots:
     void initForm();
-    void btnClick();
+private:
+	QString getWMIC(const QString &cmd);
+	QString md5(QString key);
 
 private slots:
     void on_btnMenu_Min_clicked();
     void on_btnMenu_Max_clicked();
-    void on_btnMenu_Close_clicked();
-	void readXML();
-	void searchSlot();
-	void copySlot();
-	void refreshSlot();
-	void logSlot(QString log); 
-	void logSearchSlot(QString log); 
+	void on_btnMenu_Close_clicked(); 
+	void on_btn_generate_clicked(); 
 signals:
 	void process();
 	void processCP();
@@ -72,5 +69,4 @@ private:
 	QMap<QString, QString> m_prefixMap;
 	QMap<QString, QString> m_containMap;
 };
-
 #endif // UIDemo_H
