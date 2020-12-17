@@ -7,27 +7,29 @@
 #include "savelog.h"
 #include "QtXml\qdom.h"
 #include "QCryptographicHash"
+#include "QMessageBox"
 
-const QString OneMonthGuid = " C439BBE874AE4A80";
+const QString OneMonthGuid = "C439BBE874AE4A80";
 const QString ThreeMonthGuid = "C439BBE874AE4A81";
 const QString OneYearGuid = "C439BBE874AE4A82";
 const QString PermenetGuid = "C439BBE874AE4A83";
 
-UIDemo::UIDemo(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::UIDemo)
-{
-    ui->setupUi(this);
-    this->initForm();
-	m_thread.start();
-	m_Worker->moveToThread(&m_thread);
+const QString HKEY_CURRENT_USER_QT = "HKEY_CURRENT_USER\\SoftWare\\PIE_Map";
+const QString INI_QT = "C:\Users\WangLiang\AppData\Roaming\Digia";
 
-	m_cp_thread.start();
-	m_FileCP->moveToThread(&m_cp_thread);
+UIDemo::UIDemo(QWidget *parent) :
+	QDialog(parent),
+	ui(new Ui::UIDemo)
+{
+	ui->setupUi(this);
+	this->initForm();
+	QString cpuNo = getWMIC("wmic cpu get processorid");
+	ui->lineEdit_cpu->setText(cpuNo);
+
 
 	qRegisterMetaType<QVector<int> >("QVector<int>");
-	
-    QUIWidget::setFormInCenter(this);
+
+	QUIWidget::setFormInCenter(this);
 
 
 }
@@ -49,45 +51,45 @@ void UIDemo::setStyle(const QString &str)
 	QString paletteColor = str.mid(20, 7);
 	qApp->setPalette(QPalette(QColor(paletteColor)));
 	qApp->setStyleSheet(str);
-	
+
 }
 
 void UIDemo::getDrivers()
 {
-	
+
 }
 
 void UIDemo::initForm()
 {
-    this->max = false;
-    this->location = this->geometry();
-    this->setProperty("form", true);
-    this->setProperty("canMove", true);
-    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::WindowMinMaxButtonsHint);
-	
-    IconHelper::Instance()->setIcon(ui->labIco, QChar(0xF099), 30);
-    IconHelper::Instance()->setIcon(ui->btnMenu_Min, QChar(0xF068));
-    IconHelper::Instance()->setIcon(ui->btnMenu_Max, QChar(0xF067));
-    IconHelper::Instance()->setIcon(ui->btnMenu_Close, QChar(0xF00d));
+	this->max = false;
+	this->location = this->geometry();
+	this->setProperty("form", true);
+	this->setProperty("canMove", true);
+	this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::WindowMinMaxButtonsHint);
 
-    ui->widgetTitle->setProperty("form", "title");
-    ui->widgetTop->setProperty("nav", "top");
-    ui->labTitle->setText(m_title);
-    ui->labTitle->setFont(QFont("Microsoft Yahei", 20));
-    this->setWindowTitle(ui->labTitle->text());
+	IconHelper::Instance()->setIcon(ui->labIco, QChar(0xF099), 30);
+	IconHelper::Instance()->setIcon(ui->btnMenu_Min, QChar(0xF068));
+	IconHelper::Instance()->setIcon(ui->btnMenu_Max, QChar(0xF067));
+	IconHelper::Instance()->setIcon(ui->btnMenu_Close, QChar(0xF00d));
+
+	ui->widgetTitle->setProperty("form", "title");
+	ui->widgetTop->setProperty("nav", "top");
+	ui->labTitle->setText(m_title);
+	ui->labTitle->setFont(QFont("Microsoft Yahei", 20));
+	this->setWindowTitle(ui->labTitle->text());
 
 	getDrivers();
-    QSize icoSize(32, 32);
-    int icoWidth = 85;
+	QSize icoSize(32, 32);
+	int icoWidth = 85;
 
-    //设置顶部导航按钮
-    QList<QToolButton *> tbtns = ui->widgetTop->findChildren<QToolButton *>();
-    foreach (QToolButton *btn, tbtns)
+	//设置顶部导航按钮
+	QList<QToolButton *> tbtns = ui->widgetTop->findChildren<QToolButton *>();
+	foreach(QToolButton *btn, tbtns)
 	{
-        btn->setIconSize(icoSize);
-        btn->setMinimumWidth(icoWidth);
-        btn->setCheckable(true);
-    }
+		btn->setIconSize(icoSize);
+		btn->setMinimumWidth(icoWidth);
+		btn->setCheckable(true);
+	}
 	on_btnNew_clicked();
 }
 
@@ -107,37 +109,57 @@ void UIDemo::on_btnNew_clicked()
 
 void UIDemo::on_btnMenu_Min_clicked()
 {
-    showMinimized();
+	showMinimized();
 }
 
 void UIDemo::on_btnMenu_Max_clicked()
 {
-    if (max) {
-        this->setGeometry(location);
-        this->setProperty("canMove", true);
-    } else {
-        location = this->geometry();
-        this->setGeometry(qApp->desktop()->availableGeometry());
-        this->setProperty("canMove", false);
-    }
+	if (max) {
+		this->setGeometry(location);
+		this->setProperty("canMove", true);
+	}
+	else {
+		location = this->geometry();
+		this->setGeometry(qApp->desktop()->availableGeometry());
+		this->setProperty("canMove", false);
+	}
 
-    max = !max;
+	max = !max;
 }
 
 void UIDemo::on_btnMenu_Close_clicked()
 {
-    close();
+	close();
 	exit(0);
 }
 
 void UIDemo::on_btn_generate_clicked()
 {
-	QString cpuNo = getWMIC("wmic cpu get processorid");
-	ui->lineEdit_cpu->setText(cpuNo);
+	QString cpu_no = ui->lineEdit_cpu->text().trimmed();
+	if(cpu_no.size()!=24)
+	{
+		QMessageBox::information(nullptr,"提示","机器码有误！");
+		return;
+	}
+	QString guid = PermenetGuid;
 
-	QString guid = "C439BBE874AE4A83";
-	ui->lineEdit_key->setText(md5(cpuNo + guid).left(12));
-	
+	if (ui->radioButton_oneMonth->isChecked())
+	{
+		guid = OneMonthGuid;
+	}
+	else if (ui->radioButton_threeMonth->isChecked())
+	{
+		guid = ThreeMonthGuid;
+	}
+	else if (ui->radioButton_oneYear->isChecked())
+	{
+		guid = OneYearGuid;
+	}
+
+
+
+	ui->lineEdit_key->setText(md5(cpu_no + guid).left(12));
+
 }
 
 QString UIDemo::md5(QString key)
