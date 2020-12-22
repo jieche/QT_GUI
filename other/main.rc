@@ -1,1 +1,5 @@
-IDI_ICON1       ICON      "main.ico"
+IDI_ICON0               ICON                    "key.ico"
+
+IDI_ICON1               ICON                    "main.ico"
+
+IDI_ICON2               ICON                    "key32.ico"
