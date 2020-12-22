@@ -14,8 +14,6 @@ const QString ThreeMonthGuid = "C439BBE874AE4A81";
 const QString OneYearGuid = "C439BBE874AE4A82";
 const QString PermenetGuid = "C439BBE874AE4A83";
 
-const QString HKEY_CURRENT_USER_QT = "HKEY_CURRENT_USER\\SoftWare\\PIE_Map";
-const QString INI_QT = "C:\Users\WangLiang\AppData\Roaming\Digia";
 
 UIDemo::UIDemo(QWidget *parent) :
 	QDialog(parent),
@@ -23,7 +21,7 @@ UIDemo::UIDemo(QWidget *parent) :
 {
 	ui->setupUi(this);
 	this->initForm();
-	QString cpuNo = getWMIC("wmic cpu get processorid");
+	QString cpuNo = getWMIC("wmic diskdrive get serialnumber");
 	ui->lineEdit_cpu->setText(cpuNo);
 
 
@@ -136,7 +134,7 @@ void UIDemo::on_btnMenu_Close_clicked()
 void UIDemo::on_btn_generate_clicked()
 {
 	QString cpu_no = ui->lineEdit_cpu->text().trimmed();
-	if(cpu_no.size()!=24)
+	if(cpu_no.size()!=8)
 	{
 		QMessageBox::information(nullptr,"提示","机器码有误！");
 		return;
@@ -188,7 +186,9 @@ QString UIDemo::getWMIC(const QString &cmd)
 	result = result.remove(list.last(), Qt::CaseInsensitive);
 	result = result.replace("\r", "");
 	result = result.replace("\n", "");
+	result = result.replace("_", "");
+	result = result.replace(".", "");
 	result = result.simplified();
-	return result;
+	return result.left(4)+result.right(4);
 
 }

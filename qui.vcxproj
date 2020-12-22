@@ -676,7 +676,12 @@ echo #include "head.h"&gt;&gt;head.h.cpp</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mysql.h" />
+    <ClInclude Include="other\resource.h" />
     <ClInclude Include="postgres.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="other\key.ico" />
+    <Image Include="other\key32.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

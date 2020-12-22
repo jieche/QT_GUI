@@ -1114,10 +1114,17 @@
     <ClInclude Include="postgres.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="other\resource.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="demo\uidemo.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="other\key.ico" />
+    <Image Include="other\key32.ico" />
   </ItemGroup>
 </Project>

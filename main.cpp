@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     a.setFont(QFont("Microsoft Yahei", 9));
-    a.setWindowIcon(QIcon(":/main.ico"));
+    a.setWindowIcon(QIcon(":/key32.ico"));
 
   
     AppInit::Instance()->start();

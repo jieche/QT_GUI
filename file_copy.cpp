@@ -12,14 +12,13 @@
 
 SFileCopy::SFileCopy(QObject *parent) : QObject(parent)
 {
-	
-
 	m_createfile = new QDir();
 }
 
 SFileCopy::~SFileCopy()
 {
-	if (m_createfile) {
+	if (m_createfile) 
+	{
 		m_createfile = Q_NULLPTR;
 		delete m_createfile;
 	}
